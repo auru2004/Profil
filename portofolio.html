@@ -10,7 +10,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #0a0a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7b4397 100%);
@@ -18,7 +17,6 @@
             overflow-x: hidden;
             cursor: none;
         }
-
         /* Custom Cursor */
         .custom-cursor {
             position: fixed;
@@ -31,12 +29,10 @@
             transition: all 0.1s ease;
             mix-blend-mode: difference;
         }
-
         .custom-cursor.hover {
             transform: scale(2);
             background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(103, 126, 234, 0.6) 50%, transparent 100%);
         }
-
         /* Enhanced Loading Screen */
         .loading-screen {
             position: fixed;
@@ -51,18 +47,15 @@
             z-index: 10000;
             transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-
         .loading-screen.hidden {
             opacity: 0;
             visibility: hidden;
             transform: scale(1.1);
         }
-
         .loading-container {
             text-align: center;
             position: relative;
         }
-
         .portfolio-text {
             font-size: 5rem;
             font-weight: 900;
@@ -70,7 +63,6 @@
             position: relative;
             margin-bottom: 2rem;
         }
-
         .letter {
             display: inline-block;
             opacity: 0;
@@ -81,12 +73,11 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: letterDrop 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards, 
-                       gradientShift 3s ease-in-out infinite,
+            animation: letterDrop 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards,
+                        gradientShift 3s ease-in-out infinite,
                        glow 2s ease-in-out infinite alternate;
             filter: drop-shadow(0 0 10px rgba(103, 126, 234, 0.5));
         }
-
         @keyframes letterDrop {
             0% {
                 opacity: 0;
@@ -100,17 +91,14 @@
                 transform: translateY(0) rotateX(0deg) scale(1);
             }
         }
-
         @keyframes gradientShift {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
         }
-
         @keyframes glow {
             0% { filter: drop-shadow(0 0 10px rgba(103, 126, 234, 0.5)); }
             100% { filter: drop-shadow(0 0 30px rgba(118, 75, 162, 0.8)); }
         }
-
         .letter:nth-child(1) { animation-delay: 0.1s; }
         .letter:nth-child(2) { animation-delay: 0.2s; }
         .letter:nth-child(3) { animation-delay: 0.3s; }
@@ -120,7 +108,6 @@
         .letter:nth-child(7) { animation-delay: 0.7s; }
         .letter:nth-child(8) { animation-delay: 0.8s; }
         .letter:nth-child(9) { animation-delay: 0.9s; }
-
         .loading-subtitle {
             font-size: 1.5rem;
             opacity: 0;
@@ -130,12 +117,10 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         /* Enhanced Particle System */
         .particles {
             position: fixed;
@@ -146,63 +131,55 @@
             pointer-events: none;
             z-index: -1;
         }
-
         .particle {
             position: absolute;
             border-radius: 50%;
             animation: float 8s ease-in-out infinite;
         }
-
         .particle.type1 {
             width: 4px;
             height: 4px;
             background: rgba(103, 126, 234, 0.6);
             box-shadow: 0 0 10px rgba(103, 126, 234, 0.8);
         }
-
         .particle.type2 {
             width: 6px;
             height: 6px;
             background: rgba(118, 75, 162, 0.5);
             box-shadow: 0 0 15px rgba(118, 75, 162, 0.7);
         }
-
         .particle.type3 {
             width: 3px;
             height: 3px;
             background: rgba(240, 147, 251, 0.7);
             box-shadow: 0 0 8px rgba(240, 147, 251, 0.9);
         }
-
         @keyframes float {
-            0%, 100% { 
-                transform: translateY(0px) rotate(0deg) scale(1); 
-                opacity: 0.7;
+            0%, 100% {
+                 transform: translateY(0px) rotate(0deg) scale(1);
+                 opacity: 0.7;
             }
-            25% { 
-                transform: translateY(-30px) rotate(90deg) scale(1.2); 
-                opacity: 1;
+            25% {
+                 transform: translateY(-30px) rotate(90deg) scale(1.2);
+                 opacity: 1;
             }
-            50% { 
-                transform: translateY(-60px) rotate(180deg) scale(0.8); 
-                opacity: 0.5;
+            50% {
+                 transform: translateY(-60px) rotate(180deg) scale(0.8);
+                 opacity: 0.5;
             }
-            75% { 
-                transform: translateY(-30px) rotate(270deg) scale(1.1); 
-                opacity: 0.9;
+            75% {
+                 transform: translateY(-30px) rotate(270deg) scale(1.1);
+                 opacity: 0.9;
             }
         }
-
         /* Main Content */
         .main-content {
             opacity: 0;
             transition: opacity 2s ease;
         }
-
         .main-content.visible {
             opacity: 1;
         }
-
         /* Enhanced Navigation */
         .nav {
             position: fixed;
@@ -214,7 +191,6 @@
             flex-direction: column;
             gap: 1.5rem;
         }
-
         .nav-item {
             width: 16px;
             height: 16px;
@@ -226,13 +202,11 @@
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 255, 255, 0.1);
         }
-
         .nav-item:hover, .nav-item.active {
             background: linear-gradient(45deg, #667eea, #764ba2);
             transform: scale(1.5);
             box-shadow: 0 0 20px rgba(103, 126, 234, 0.6);
         }
-
         .nav-item::after {
             content: attr(data-section);
             position: absolute;
@@ -251,12 +225,10 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
         .nav-item:hover::after {
             opacity: 1;
             transform: translateY(-50%) translateX(-10px);
         }
-
         /* Header Section */
         .header {
             position: relative;
@@ -268,7 +240,6 @@
             text-align: center;
             overflow: hidden;
         }
-
         .header::before {
             content: '';
             position: absolute;
@@ -280,19 +251,16 @@
                         radial-gradient(circle at 70% 30%, rgba(118, 75, 162, 0.2) 0%, transparent 50%);
             animation: backgroundShift 10s ease-in-out infinite;
         }
-
         @keyframes backgroundShift {
             0%, 100% { transform: scale(1) rotate(0deg); }
             50% { transform: scale(1.1) rotate(5deg); }
         }
-
         /* Spectacular Profile Card */
         .profile-container {
             position: relative;
             z-index: 2;
             margin-bottom: 3rem;
         }
-
         .profile-image {
             width: 320px;
             height: 400px;
@@ -309,7 +277,7 @@
             position: relative;
             animation: cardFloat 8s ease-in-out infinite, cardGlow 6s ease-in-out infinite alternate;
             transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 
+            box-shadow:
                 0 30px 60px rgba(0, 0, 0, 0.4),
                 0 15px 30px rgba(103, 126, 234, 0.3),
                 0 5px 15px rgba(118, 75, 162, 0.2),
@@ -318,7 +286,6 @@
             perspective: 1000px;
             cursor: pointer;
         }
-
         .profile-image::before {
             content: '';
             position: absolute;
@@ -332,7 +299,6 @@
             z-index: -2;
             animation: gradientRotate 6s linear infinite;
         }
-
         .profile-image::after {
             content: '';
             position: absolute;
@@ -344,24 +310,22 @@
             border-radius: 25px;
             z-index: -1;
         }
-
         @keyframes cardFloat {
             0%, 100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
             25% { transform: translateY(-15px) rotateX(3deg) rotateY(-3deg); }
             50% { transform: translateY(-8px) rotateX(0deg) rotateY(3deg); }
             75% { transform: translateY(-20px) rotateX(-3deg) rotateY(-2deg); }
         }
-
         @keyframes cardGlow {
             0% {
-                box-shadow: 
+                box-shadow:
                     0 30px 60px rgba(0, 0, 0, 0.4),
                     0 15px 30px rgba(103, 126, 234, 0.3),
                     0 5px 15px rgba(118, 75, 162, 0.2),
                     inset 0 2px 0 rgba(255, 255, 255, 0.3);
             }
             100% {
-                box-shadow: 
+                box-shadow:
                     0 40px 80px rgba(0, 0, 0, 0.5),
                     0 25px 50px rgba(103, 126, 234, 0.5),
                     0 10px 30px rgba(118, 75, 162, 0.4),
@@ -369,22 +333,18 @@
                     inset 0 3px 0 rgba(255, 255, 255, 0.4);
             }
         }
-
         @keyframes gradientRotate {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
         .profile-image:hover {
             transform: translateY(-30px) rotateX(15deg) rotateY(15deg) scale(1.08);
             animation-play-state: paused;
         }
-
         .profile-image.flipped {
             transform: rotateY(180deg);
         }
-
         .card-content {
             display: flex;
             flex-direction: column;
@@ -397,11 +357,9 @@
             transition: transform 0.6s;
             transform-style: preserve-3d;
         }
-
         .card-front {
             backface-visibility: hidden;
         }
-
         .card-back {
             position: absolute;
             width: 100%;
@@ -417,7 +375,6 @@
             text-align: center;
             padding: 25px;
         }
-
         .profile-image img {
             width: 220px;
             height: 220px;
@@ -429,19 +386,16 @@
             z-index: 1;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
-
         .profile-image:hover img {
             transform: scale(1.15);
             filter: brightness(1.3) contrast(1.2);
             border-color: rgba(103, 126, 234, 0.7);
         }
-
         .card-info {
             margin-top: 20px;
             text-align: center;
             color: rgba(255, 255, 255, 0.95);
         }
-
         .card-name {
             font-size: 1.3rem;
             font-weight: bold;
@@ -451,13 +405,11 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
         .card-title {
             font-size: 1rem;
             color: rgba(255, 255, 255, 0.8);
             font-style: italic;
         }
-
         /* Floating Elements */
         .floating-elements {
             position: absolute;
@@ -468,7 +420,6 @@
             transform: translate(-50%, -50%);
             pointer-events: none;
         }
-
         .floating-element {
             position: absolute;
             width: 12px;
@@ -478,17 +429,14 @@
             animation: orbit 15s linear infinite;
             box-shadow: 0 0 15px rgba(103, 126, 234, 0.8);
         }
-
         .floating-element:nth-child(1) { animation-delay: 0s; }
         .floating-element:nth-child(2) { animation-delay: -3.75s; }
         .floating-element:nth-child(3) { animation-delay: -7.5s; }
         .floating-element:nth-child(4) { animation-delay: -11.25s; }
-
         @keyframes orbit {
             0% { transform: rotate(0deg) translateX(200px) rotate(0deg); }
             100% { transform: rotate(360deg) translateX(200px) rotate(-360deg); }
         }
-
         /* Enhanced Typography */
         .main-title {
             font-size: 4rem;
@@ -501,17 +449,14 @@
             animation: titleGlow 3s ease-in-out infinite alternate, titleFloat 6s ease-in-out infinite;
             text-shadow: 0 0 30px rgba(103, 126, 234, 0.5);
         }
-
         @keyframes titleGlow {
             0% { filter: drop-shadow(0 0 20px rgba(103, 126, 234, 0.7)); }
             100% { filter: drop-shadow(0 0 40px rgba(118, 75, 162, 1)); }
         }
-
         @keyframes titleFloat {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
         }
-
         .subtitle {
             font-size: 1.8rem;
             color: rgba(255, 255, 255, 0.9);
@@ -519,7 +464,6 @@
             animation: fadeInUp 1.5s ease-out 1s both;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
-
         /* Sections */
         .section {
             min-height: 100vh;
@@ -530,12 +474,10 @@
             transform: translateY(80px);
             transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-
         .section.visible {
             opacity: 1;
             transform: translateY(0);
         }
-
         .section-title {
             font-size: 3.5rem;
             text-align: center;
@@ -547,7 +489,6 @@
             position: relative;
             animation: sectionTitleGlow 4s ease-in-out infinite alternate;
         }
-
         .section-title::after {
             content: '';
             position: absolute;
@@ -560,17 +501,14 @@
             border-radius: 2px;
             animation: lineGrow 2s ease-out;
         }
-
         @keyframes sectionTitleGlow {
             0% { filter: drop-shadow(0 0 10px rgba(103, 126, 234, 0.5)); }
             100% { filter: drop-shadow(0 0 25px rgba(118, 75, 162, 0.8)); }
         }
-
         @keyframes lineGrow {
             0% { width: 0; }
             100% { width: 100px; }
         }
-
         /* Enhanced Cards */
         .card {
             background: linear-gradient(145deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
@@ -583,7 +521,6 @@
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
-
         .card::before {
             content: '';
             position: absolute;
@@ -594,17 +531,14 @@
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.8s ease;
         }
-
         .card:hover::before {
             left: 100%;
         }
-
         .card:hover {
             transform: translateY(-15px) scale(1.02);
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(103, 126, 234, 0.3);
             border-color: rgba(103, 126, 234, 0.4);
         }
-
         /* Grid Layouts */
         .profile-grid, .skills-grid {
             display: grid;
@@ -612,14 +546,111 @@
             gap: 2.5rem;
             margin-top: 3rem;
         }
-
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
             gap: 3rem;
             margin-top: 3rem;
         }
-
+        /* Certificate Grid */
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        /* Certificate Cards */
+        .certificate-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+            border-radius: 25px;
+            overflow: hidden;
+            backdrop-filter: blur(25px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+        .certificate-card:hover {
+            transform: translateY(-20px) scale(1.03) rotateY(5deg);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4), 0 0 40px rgba(103, 126, 234, 0.4);
+        }
+        .certificate-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c, #4facfe, #00f2fe);
+            background-size: 400% 400%;
+            border-radius: 27px;
+            z-index: -1;
+            animation: gradientRotate 8s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .certificate-card:hover::before {
+            opacity: 1;
+        }
+        .certificate-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        .certificate-image:hover {
+            transform: scale(1.05);
+        }
+        .certificate-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.4s ease;
+        }
+        .certificate-image:hover img {
+            transform: scale(1.1);
+            filter: brightness(1.2);
+        }
+        .certificate-content {
+            padding: 2rem;
+            text-align: center;
+        }
+        .certificate-title {
+            color: #667eea;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        .certificate-description {
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        .certificate-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(45deg, rgba(103, 126, 234, 0.3), rgba(118, 75, 162, 0.2));
+            color: #667eea;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(103, 126, 234, 0.5);
+            transition: all 0.3s ease;
+        }
+        .certificate-badge:hover {
+            background: linear-gradient(45deg, rgba(103, 126, 234, 0.5), rgba(118, 75, 162, 0.4));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(103, 126, 234, 0.3);
+        }
         /* Project Cards */
         .project-card {
             background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
@@ -631,12 +662,10 @@
             position: relative;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
         }
-
         .project-card:hover {
             transform: translateY(-20px) scale(1.03);
             box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4), 0 0 40px rgba(103, 126, 234, 0.4);
         }
-
         .project-image {
             width: 100%;
             height: 220px;
@@ -651,46 +680,38 @@
             cursor: pointer;
             transition: all 0.4s ease;
         }
-
         .project-image:hover {
             transform: scale(1.05);
         }
-
         .project-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: all 0.4s ease;
         }
-
         .project-image:hover img {
             transform: scale(1.1);
             filter: brightness(1.2);
         }
-
         .project-content {
             padding: 2rem;
         }
-
         .project-title {
             color: #667eea;
             font-size: 1.4rem;
             margin-bottom: 1rem;
             font-weight: bold;
         }
-
         .project-description {
             color: rgba(255, 255, 255, 0.85);
             line-height: 1.7;
             margin-bottom: 1.5rem;
         }
-
         .project-tech {
             display: flex;
             flex-wrap: wrap;
             gap: 0.8rem;
         }
-
         .tech-tag {
             background: linear-gradient(45deg, rgba(103, 126, 234, 0.3), rgba(118, 75, 162, 0.2));
             color: #667eea;
@@ -700,13 +721,11 @@
             border: 1px solid rgba(103, 126, 234, 0.5);
             transition: all 0.3s ease;
         }
-
         .tech-tag:hover {
             background: linear-gradient(45deg, rgba(103, 126, 234, 0.5), rgba(118, 75, 162, 0.4));
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(103, 126, 234, 0.3);
         }
-
         /* Image Modal */
         .image-modal {
             position: fixed;
@@ -724,12 +743,10 @@
             visibility: hidden;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-
         .image-modal.active {
             opacity: 1;
             visibility: visible;
         }
-
         .modal-content {
             position: relative;
             max-width: 90%;
@@ -743,18 +760,15 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
         }
-
         .image-modal.active .modal-content {
             transform: scale(1);
         }
-
         .modal-content img {
             width: 100%;
             height: 100%;
             object-fit: contain;
             display: block;
         }
-
         .close-modal {
             position: absolute;
             top: 15px;
@@ -773,18 +787,15 @@
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
         }
-
         .close-modal:hover {
             background: rgba(255, 0, 0, 0.7);
             transform: scale(1.1);
         }
-
         /* Timeline */
         .timeline {
             position: relative;
             padding: 3rem 0;
         }
-
         .timeline::before {
             content: '';
             position: absolute;
@@ -797,7 +808,6 @@
             border-radius: 2px;
             box-shadow: 0 0 20px rgba(103, 126, 234, 0.5);
         }
-
         .timeline-item {
             position: relative;
             margin: 3rem 0;
@@ -810,16 +820,13 @@
             transition: all 0.6s ease;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
-
         .timeline-item:nth-child(even) {
             margin-left: 55%;
         }
-
         .timeline-item:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(103, 126, 234, 0.3);
         }
-
         .timeline-item::before {
             content: '';
             position: absolute;
@@ -832,15 +839,12 @@
             box-shadow: 0 0 20px rgba(103, 126, 234, 0.8);
             border: 4px solid rgba(255, 255, 255, 0.3);
         }
-
         .timeline-item:nth-child(odd)::before {
             right: -35px;
         }
-
         .timeline-item:nth-child(even)::before {
             left: -35px;
         }
-
         /* Contact Section */
         .contact-card {
             background: linear-gradient(145deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
@@ -855,7 +859,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .contact-card::before {
             content: '';
             position: absolute;
@@ -866,17 +869,14 @@
             background: conic-gradient(from 0deg, transparent, rgba(103, 126, 234, 0.1), transparent);
             animation: rotate 10s linear infinite;
         }
-
         .contact-card > * {
             position: relative;
             z-index: 1;
         }
-
         @keyframes rotate {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
         .quote {
             font-size: 2rem;
             font-style: italic;
@@ -885,14 +885,12 @@
             line-height: 1.6;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
-
         .contact-info {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
-
         .contact-item {
             padding: 2rem;
             background: rgba(255, 255, 255, 0.08);
@@ -900,68 +898,54 @@
             transition: all 0.4s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
         .contact-item:hover {
             background: linear-gradient(45deg, rgba(103, 126, 234, 0.2), rgba(118, 75, 162, 0.1));
             transform: translateY(-8px);
             box-shadow: 0 15px 30px rgba(103, 126, 234, 0.3);
         }
-
         /* Responsive Design */
         @media (max-width: 768px) {
             .portfolio-text {
                 font-size: 3rem;
                 letter-spacing: 0.5rem;
             }
-
             .main-title {
                 font-size: 2.8rem;
             }
-
             .profile-image {
                 width: 280px;
                 height: 350px;
             }
-
             .profile-image img {
                 width: 180px;
                 height: 180px;
             }
-
-            .profile-grid, .projects-grid {
+            .profile-grid, .projects-grid, .certificates-grid {
                 grid-template-columns: 1fr;
             }
-
             .nav {
                 display: none;
             }
-
             .section {
                 padding: 4rem 1rem;
             }
-
             .timeline::before {
                 left: 30px;
             }
-
             .timeline-item {
                 width: calc(100% - 60px);
                 margin-left: 60px;
             }
-
             .timeline-item:nth-child(even) {
                 margin-left: 60px;
             }
-
             .timeline-item::before {
                 left: -45px;
             }
-
             .timeline-item:nth-child(even)::before {
                 left: -45px;
             }
         }
-
         /* Additional Spectacular Effects */
         .sparkle {
             position: absolute;
@@ -971,16 +955,13 @@
             border-radius: 50%;
             animation: sparkle 2s linear infinite;
         }
-
         @keyframes sparkle {
             0%, 100% { opacity: 0; transform: scale(0); }
             50% { opacity: 1; transform: scale(1); }
         }
-
         .section-enter {
             animation: sectionEnter 1s ease-out;
         }
-
         @keyframes sectionEnter {
             0% {
                 opacity: 0;
@@ -991,7 +972,6 @@
                 transform: translateY(0) scale(1);
             }
         }
-
         /* Scroll indicator */
         .scroll-indicator {
             position: fixed;
@@ -1002,23 +982,19 @@
             background: rgba(255, 255, 255, 0.1);
             z-index: 9999;
         }
-
         .scroll-progress {
             height: 100%;
             background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
             width: 0%;
             transition: width 0.1s ease;
         }
-
         .project-image img, .profile-image img {
             transition: all 0.4s ease;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-
         .project-image img:not([src]), .project-image img[src=""] {
             display: none;
         }
-
         .project-image img:not([src])::after, .project-image img[src=""]::after {
             content: "📷 Image Loading...";
             display: flex;
@@ -1030,13 +1006,11 @@
             font-size: 1.2rem;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-
         /* Image loading animation */
         .image-loading {
             position: relative;
             overflow: hidden;
         }
-
         .image-loading::before {
             content: '';
             position: absolute;
@@ -1047,7 +1021,6 @@
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             animation: imageShimmer 1.5s infinite;
         }
-
         @keyframes imageShimmer {
             0% { left: -100%; }
             100% { left: 100%; }
@@ -1057,12 +1030,10 @@
 <body>
     <!-- Custom Cursor -->
     <div class="custom-cursor" id="cursor"></div>
-
     <!-- Scroll Indicator -->
     <div class="scroll-indicator">
         <div class="scroll-progress" id="scrollProgress"></div>
     </div>
-
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-container">
@@ -1080,22 +1051,20 @@
             <div class="loading-subtitle">Ivan Cavanneva Royd</div>
         </div>
     </div>
-
     <!-- Main Content -->
     <div class="main-content" id="mainContent">
         <!-- Particle Background -->
         <div class="particles" id="particles"></div>
-
         <!-- Navigation -->
         <nav class="nav">
             <div class="nav-item active" data-section="Home" onclick="scrollToSection('header')"></div>
             <div class="nav-item" data-section="Profile" onclick="scrollToSection('profile')"></div>
             <div class="nav-item" data-section="Skills" onclick="scrollToSection('skills')"></div>
             <div class="nav-item" data-section="Projects" onclick="scrollToSection('projects')"></div>
+            <div class="nav-item" data-section="Certificates" onclick="scrollToSection('certificates')"></div>
             <div class="nav-item" data-section="Education" onclick="scrollToSection('education')"></div>
             <div class="nav-item" data-section="Contact" onclick="scrollToSection('contact')"></div>
         </nav>
-
         <!-- Header -->
         <header class="header" id="header">
             <div class="profile-container">
@@ -1108,7 +1077,7 @@
                 <div class="profile-image" onclick="flipCard()">
                     <div class="card-front">
                         <div class="card-content">
-                            <img src="profile.jpg" alt="Ivan Cavanneva Royd Nastain" onclick="handleImageClick('profile.jpg')">
+                            <img src="profile.jpg" alt="Ivan Cavanneva Royd Nastain" onclick="handleImageClick('/placeholder.svg?height=220&width=220')">
                             <div class="card-info">
                                 <div class="card-name">Ivan Cavanneva</div>
                                 <div class="card-title">Developer & AI Enthusiast</div>
@@ -1129,7 +1098,6 @@
             <h1 class="main-title">Ivan Cavanneva Royd Nastain</h1>
             <p class="subtitle">Penikmat Literatur & Sinema • Developer • AI Enthusiast</p>
         </header>
-
         <!-- Profile Section -->
         <section class="section" id="profile">
             <h2 class="section-title">Profil Singkat</h2>
@@ -1157,7 +1125,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Skills Section -->
         <section class="section" id="skills">
             <h2 class="section-title">Keahlian</h2>
@@ -1194,13 +1161,12 @@
                 </div>
             </div>
         </section>
-
         <!-- Projects Section -->
         <section class="section" id="projects">
             <h2 class="section-title">Proyek yang Dikerjakan</h2>
             <div class="projects-grid">
                 <div class="project-card">
-                    <div class="project-image" onclick="handleImageClick('proyek1.png')">
+                    <div class="project-image" onclick="handleImageClick('/placeholder.svg?height=220&width=380')">
                         <img src="proyek1.png" alt="Web Aplikasi Novel dan Cerpen MERITA" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="project-content">
@@ -1214,9 +1180,8 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="project-card">
-                    <div class="project-image" onclick="handleImageClick('proyek2.jpg')">
+                    <div class="project-image" onclick="handleImageClick('/placeholder.svg?height=220&width=380')">
                         <img src="proyek2.jpg" alt="Smart Boat Controller via Bluetooth" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="project-content">
@@ -1229,9 +1194,8 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="project-card">
-                    <div class="project-image" onclick="handleImageClick('proyek3.png')">
+                    <div class="project-image" onclick="handleImageClick('/placeholder.svg?height=220&width=380')">
                         <img src="proyek3.png" alt="Aplikasi Gamifikasi Pembelajaran" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="project-content">
@@ -1245,10 +1209,9 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="project-card">
-                    <div class="project-image" onclick="handleImageClick('projects/voice-ai.png')">
-                        <img src="projects/voice-ai.png" alt="Voice Recognition AI + Stopwatch Web" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="project-image" onclick="handleImageClick('/placeholder.svg?height=220&width=380')">
+                        <img src="voice-ai.png" alt="Voice Recognition AI + Stopwatch Web" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Voice Recognition AI + Stopwatch Web</h3>
@@ -1260,9 +1223,8 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="project-card">
-                    <div class="project-image" onclick="handleImageClick('proyek5.png')">
+                    <div class="project-image" onclick="handleImageClick('/placeholder.svg?height=220&width=380')">
                         <img src="proyek5.png" alt="Aplikasi Keuangan Pribadi" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="project-content">
@@ -1275,9 +1237,8 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="project-card">
-                    <div class="project-image" onclick="handleImageClick('proyek6.png')">
+                    <div class="project-image" onclick="handleImageClick('/placeholder.svg?height=220&width=380')">
                         <img src="proyek6.png" alt="Simulasi COBIT 5 Framework" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="project-content">
@@ -1290,11 +1251,9 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- NEW 7th Project -->
                 <div class="project-card">
-                    <div class="project-image" onclick="handleImageClick('projects/portfolio.png')">
-                        <img src="projects/portfolio.png" alt="Interactive Portfolio Website" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="project-image" onclick="handleImageClick('/placeholder.svg?height=220&width=380')">
+                        <img src="portfolio.png" alt="Interactive Portfolio Website" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Interactive Portfolio Website - Spectacular Edition</h3>
@@ -1310,7 +1269,60 @@
                 </div>
             </div>
         </section>
-
+        <!-- Certificates Section -->
+        <section class="section" id="certificates">
+            <h2 class="section-title">Sertifikat & Penghargaan</h2>
+            <div class="certificates-grid">
+                <div class="certificate-card" onclick="handleImageClick('/placeholder.svg?height=300&width=400')">
+                    <div class="certificate-image">
+                        <img src="sertif1.jpg" alt="Sertifikat Teknologi Informasi" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">Sertifikat Jurnal SINTA 5</h3>
+                        <p class="certificate-description">Sertifikat Jurnal SINTA 5 merupakan pengakuan resmi dari Kementerian Riset, Teknologi, dan Pendidikan Tinggi Republik Indonesia terhadap jurnal ilmiah yang telah terakreditasi pada peringkat SINTA (Science and Technology Index) level 5.</p>
+                        <div class="certificate-badge">
+                            <span>JURNAL</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="certificate-card" onclick="handleImageClick('/placeholder.svg?height=300&width=400')">
+                    <div class="certificate-image">
+                        <img src="sertif2.jpg" alt="Sertifikat Pemrograman Web" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">Sertifikat Pemrograman Web</h3>
+                        <p class="certificate-description">Sertifikat keahlian dalam pengembangan aplikasi web menggunakan teknologi modern seperti HTML5, CSS3, JavaScript, dan PHP.</p>
+                        <div class="certificate-badge">
+                             <span>Web Development</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="certificate-card" onclick="handleImageClick('/placeholder.svg?height=300&width=400')">
+                    <div class="certificate-image">
+                        <img src="sertif3.jpg" alt="Sertifikat Database Management" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">Sertifikat Program Kreativitas Mahasiswa Tahun 2024</h3>
+                        <p class="certificate-description">Sertifikat PKMKC 2024 merupakan bukti partisipasi atau penghargaan dalam kegiatan Program Kreativitas Mahasiswa Kewirausahaan Kategori Khusus (PKMKC) tahun 2024 yang diselenggarakan oleh Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi Republik Indonesia.</p>
+                        <div class="certificate-badge">
+                             <span>PKM-KC 2024</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="certificate-card" onclick="handleImageClick('/placeholder.svg?height=300&width=400')">
+                    <div class="certificate-image">
+                        <img src="sertif4.jpg" alt="Sertifikat Mobile App Development" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="certificate-content">
+                        <h3 class="certificate-title">Sertifikat Mahasiswa Berprestasi</h3>
+                        <p class="certificate-description">Sertifikat Mahasiswa Berprestasi merupakan penghargaan yang diberikan kepada mahasiswa yang menunjukkan pencapaian luar biasa dalam bidang akademik, non-akademik, atau keduanya.</p>
+                        <div class="certificate-badge">
+                             <span>Mahasiswa Berprestasi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- Education Section -->
         <section class="section" id="education">
             <h2 class="section-title">Pendidikan & Pengalaman</h2>
@@ -1333,16 +1345,15 @@
                 </div>
                 <div class="timeline-item">
                     <h3 style="color: #667eea; margin-bottom: 1.5rem; font-size: 1.6rem;">Publikasi Jurnal</h3>
-                    <p style="margin-bottom: 0.8rem;"><strong>Judul:</strong> Penelitian Teknologi Informasi</p>
+                    <p style="margin-bottom: 0.8rem;"><strong>Judul:</strong> Analisis Tata Kelola IT Perbankan Menggunakan COBIT 5 pada EDM04, APO09, DSS01</p>
                     <p style="margin-bottom: 0.8rem;"><strong>URL:</strong> <a href="https://ojs.serambimekkah.ac.id/jnkti/article/view/8882" target="_blank" style="color: #667eea; text-decoration: underline;">https://ojs.serambimekkah.ac.id/jnkti/article/view/8882</a></p>
-                    <p style="color: rgba(255, 255, 255, 0.85); line-height: 1.6;">Kontribusi dalam penelitian dan pengembangan teknologi informasi.</p>
+                    <p style="color: rgba(255, 255, 255, 0.85); line-height: 1.6;">Penelitian ini mengkaji tata kelola Teknologi Informasi (TI) dalam sektor perbankan menggunakan kerangka kerja COBIT 5, dengan fokus pada domain EDM04, APO09, dan DSS01.</p>
                 </div>
             </div>
         </section>
-
         <!-- Contact Section -->
         <section class="section" id="contact">
-            <h2 class="section-title">Kontak</h2>
+            <h2 class="section-title">Ivan Cavanneva</h2>
             <div class="contact-card">
                 <div class="quote">
                     "Teknologi membuka masa depan, buku mengajarkan makna, film menghadirkan rasa."
@@ -1360,7 +1371,6 @@
             </div>
         </section>
     </div>
-
     <!-- Image Modal -->
     <div class="image-modal" id="imageModal">
         <div class="modal-content" id="modalContent">
@@ -1368,13 +1378,11 @@
             <img id="modalImage" src="/placeholder.svg" alt="Enlarged image">
         </div>
     </div>
-
     <script>
         // Global Variables
         let isFlipped = false;
         let mouseX = 0;
         let mouseY = 0;
-
         // Custom Cursor
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', (e) => {
@@ -1383,25 +1391,22 @@
             cursor.style.left = mouseX + 'px';
             cursor.style.top = mouseY + 'px';
         });
-
         // Cursor hover effects
         document.addEventListener('mouseover', (e) => {
-            if (e.target.matches('button, a, .nav-item, .project-image, img, .card')) {
+            if (e.target.matches('button, a, .nav-item, .project-image, .certificate-card, img, .card')) {
                 cursor.classList.add('hover');
             }
         });
-
         document.addEventListener('mouseout', (e) => {
-            if (e.target.matches('button, a, .nav-item, .project-image, img, .card')) {
+            if (e.target.matches('button, a, .nav-item, .project-image, .certificate-card, img, .card')) {
                 cursor.classList.remove('hover');
             }
         });
-
         // Loading Screen
         function hideLoadingScreen() {
             const loadingScreen = document.getElementById('loadingScreen');
             const mainContent = document.getElementById('mainContent');
-            
+                        
             setTimeout(() => {
                 loadingScreen.classList.add('hidden');
                 mainContent.classList.add('visible');
@@ -1409,27 +1414,25 @@
                 createSparkles();
             }, 4000);
         }
-
         // Enhanced Particle System
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
             const particleCount = 80;
-            
+                        
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 const types = ['type1', 'type2', 'type3'];
                 const randomType = types[Math.floor(Math.random() * types.length)];
-                
+                                
                 particle.className = `particle ${randomType}`;
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.top = Math.random() * 100 + '%';
                 particle.style.animationDelay = Math.random() * 8 + 's';
                 particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
-                
+                                
                 particlesContainer.appendChild(particle);
             }
         }
-
         // Create Sparkles
         function createSparkles() {
             setInterval(() => {
@@ -1437,30 +1440,27 @@
                 sparkle.className = 'sparkle';
                 sparkle.style.left = Math.random() * window.innerWidth + 'px';
                 sparkle.style.top = Math.random() * window.innerHeight + 'px';
-                
+                                
                 document.body.appendChild(sparkle);
-                
+                                
                 setTimeout(() => {
                     sparkle.remove();
                 }, 2000);
             }, 3000);
         }
-
         // Smooth Scrolling
         function scrollToSection(sectionId) {
             const element = document.getElementById(sectionId);
-            element.scrollIntoView({ 
-                behavior: 'smooth',
+            element.scrollIntoView({
+                 behavior: 'smooth',
                 block: 'start'
             });
         }
-
         // Intersection Observer for animations
         const observerOptions = {
             threshold: 0.2,
             rootMargin: '0px 0px -100px 0px'
         };
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1470,37 +1470,36 @@
                 }
             });
         }, observerOptions);
-
         // Update navigation
         function updateNavigation(activeSection) {
             const navItems = document.querySelectorAll('.nav-item');
             navItems.forEach(item => item.classList.remove('active'));
-            
+                        
             const sectionMap = {
                 'header': 0,
                 'profile': 1,
                 'skills': 2,
                 'projects': 3,
-                'education': 4,
-                'contact': 5
+                'certificates': 4,
+                'education': 5,
+                'contact': 6
             };
-            
+                        
             if (sectionMap[activeSection] !== undefined) {
                 navItems[sectionMap[activeSection]].classList.add('active');
             }
         }
-
         // Card flip functionality
         function flipCard() {
             const card = document.querySelector('.profile-image');
             isFlipped = !isFlipped;
-            
+                        
             if (isFlipped) {
                 card.classList.add('flipped');
             } else {
                 card.classList.remove('flipped');
             }
-            
+                        
             // Auto flip back after 4 seconds
             if (isFlipped) {
                 setTimeout(() => {
@@ -1509,64 +1508,58 @@
                 }, 4000);
             }
         }
-
         // Image Modal Functions
         function handleImageClick(imageSrc) {
             const modal = document.getElementById('imageModal');
             const modalImage = document.getElementById('modalImage');
-            
+                        
             modalImage.src = imageSrc;
             modal.classList.add('active');
-            
+                        
             // Prevent body scroll
             document.body.style.overflow = 'hidden';
         }
-
         function closeImageModal() {
             const modal = document.getElementById('imageModal');
             modal.classList.remove('active');
-            
+                        
             // Restore body scroll
             document.body.style.overflow = 'auto';
         }
-
         // Close modal when clicking outside
         document.getElementById('imageModal').addEventListener('click', (e) => {
             if (e.target.id === 'imageModal') {
                 closeImageModal();
             }
         });
-
         // Scroll Progress Indicator
         function updateScrollProgress() {
             const scrollProgress = document.getElementById('scrollProgress');
             const scrollTop = window.pageYOffset;
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
             const scrollPercent = (scrollTop / docHeight) * 100;
-            
+                        
             scrollProgress.style.width = scrollPercent + '%';
         }
-
         // Parallax Effects
         function parallaxEffect() {
             const scrolled = window.pageYOffset;
             const parallaxElements = document.querySelectorAll('.header::before');
-            
+                        
             parallaxElements.forEach(element => {
                 const speed = 0.3;
                 element.style.transform = `translateY(${scrolled * speed}px)`;
             });
         }
-
         // Enhanced Scroll Reveal
         function scrollReveal() {
-            const reveals = document.querySelectorAll('.card, .timeline-item');
-            
+            const reveals = document.querySelectorAll('.card, .timeline-item, .certificate-card');
+                        
             reveals.forEach((reveal, index) => {
                 const windowHeight = window.innerHeight;
                 const elementTop = reveal.getBoundingClientRect().top;
                 const elementVisible = 150;
-                
+                                
                 if (elementTop < windowHeight - elementVisible) {
                     setTimeout(() => {
                         reveal.style.opacity = '1';
@@ -1575,12 +1568,11 @@
                 }
             });
         }
-
         // Typing Effect for Title
         function typeWriter(element, text, speed = 100) {
             let i = 0;
             element.innerHTML = '';
-            
+                        
             function typing() {
                 if (i < text.length) {
                     element.innerHTML += text.charAt(i);
@@ -1588,10 +1580,9 @@
                     setTimeout(typing, speed);
                 }
             }
-            
+                        
             typing();
         }
-
         // Performance optimized scroll handler
         let ticking = false;
         function requestTick() {
@@ -1600,28 +1591,26 @@
                 ticking = true;
             }
         }
-
         function updateAnimations() {
             updateScrollProgress();
             parallaxEffect();
             scrollReveal();
             ticking = false;
         }
-
         // Initialize everything
         document.addEventListener('DOMContentLoaded', function() {
             hideLoadingScreen();
-            
+                        
             // Observe all sections
             const sections = document.querySelectorAll('.section, .header');
             sections.forEach(section => observer.observe(section));
-            
+                        
             // Scroll events
             window.addEventListener('scroll', requestTick);
-            
+                        
             // Initial scroll reveal
             scrollReveal();
-            
+                        
             // Typing effect for main title
             setTimeout(() => {
                 const mainTitle = document.querySelector('.main-title');
@@ -1630,19 +1619,19 @@
                     typeWriter(mainTitle, originalText, 120);
                 }
             }, 5000);
-            
+                        
             // Enhanced hover effects
-            const cards = document.querySelectorAll('.card, .project-card, .contact-item');
+            const cards = document.querySelectorAll('.card, .project-card, .certificate-card, .contact-item');
             cards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
                     this.style.transform = 'translateY(-15px) scale(1.02)';
                 });
-                
+                                
                 card.addEventListener('mouseleave', function() {
                     this.style.transform = 'translateY(0) scale(1)';
                 });
             });
-            
+                        
             // Navigation click effects
             const navItems = document.querySelectorAll('.nav-item');
             navItems.forEach(item => {
@@ -1653,43 +1642,39 @@
                     }, 200);
                 });
             });
-            
+                        
             // Add floating animation to profile image
             const profileImage = document.querySelector('.profile-image');
             if (profileImage) {
                 profileImage.addEventListener('mouseenter', function() {
                     this.style.animationPlayState = 'paused';
                 });
-                
+                                
                 profileImage.addEventListener('mouseleave', function() {
                     this.style.animationPlayState = 'running';
                 });
             }
         });
-
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeImageModal();
             }
         });
-
         // Add dynamic background color change based on scroll
         window.addEventListener('scroll', () => {
             const scrollPercent = window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight);
             const hue = Math.floor(scrollPercent * 60) + 240; // From blue to purple
             document.body.style.background = `linear-gradient(135deg, hsl(${hue}, 70%, 15%) 0%, hsl(${hue + 20}, 60%, 20%) 25%, hsl(${hue + 40}, 65%, 25%) 50%, hsl(${hue + 60}, 55%, 30%) 75%, hsl(${hue + 80}, 60%, 35%) 100%)`;
         });
-
         // Add click sound effect (optional)
         function playClickSound() {
             // You can add audio here if needed
             // const audio = new Audio('click-sound.mp3');
             // audio.play();
         }
-
         // Add more interactive elements
-        document.querySelectorAll('.tech-tag').forEach(tag => {
+        document.querySelectorAll('.tech-tag, .certificate-badge').forEach(tag => {
             tag.addEventListener('click', function() {
                 this.style.transform = 'scale(1.2) rotate(5deg)';
                 setTimeout(() => {
@@ -1697,7 +1682,6 @@
                 }, 200);
             });
         });
-
         // Image error handling
         function handleImageError(img) {
             img.style.display = 'none';
@@ -1708,7 +1692,6 @@
                 </div>
             `;
         }
-
         // Add error handling to all images
         document.addEventListener('DOMContentLoaded', function() {
             const images = document.querySelectorAll('img');
@@ -1717,7 +1700,7 @@
                 img.addEventListener('load', () => {
                     img.parentElement.classList.remove('image-loading');
                 });
-                
+                                
                 // Add loading class initially
                 img.parentElement.classList.add('image-loading');
             });
