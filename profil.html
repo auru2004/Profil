@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivan Cavanneva Royd</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .elegant-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .luxury-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 20%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 20% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 40px 20px;
+            z-index: 3;
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .geometric-shape {
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: gentleFloat 8s ease-in-out infinite;
+        }
+
+        .geometric-shape:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            animation-delay: 0s;
+        }
+
+        .geometric-shape:nth-child(2) {
+            top: 20%;
+            right: 15%;
+            width: 60px;
+            height: 60px;
+            transform: rotate(45deg);
+            animation-delay: 2s;
+        }
+
+        .geometric-shape:nth-child(3) {
+            bottom: 25%;
+            left: 20%;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            animation-delay: 4s;
+        }
+
+        .geometric-shape:nth-child(4) {
+            bottom: 15%;
+            right: 10%;
+            width: 70px;
+            height: 70px;
+            transform: rotate(45deg);
+            animation-delay: 6s;
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.3;
+            }
+            50% { 
+                transform: translateY(-15px) rotate(180deg);
+                opacity: 0.7;
+            }
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 80px;
+            animation: fadeInUp 1.2s ease-out;
+            max-width: 800px;
+        }
+
+        .profile-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            animation: titleShine 3s ease-in-out infinite;
+        }
+
+        @keyframes titleShine {
+            0%, 100% { 
+                background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            50% { 
+                background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+
+        .profile-divider {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ec4899, transparent);
+            margin: 0 auto 25px;
+            animation: fadeInUp 1.2s ease-out 0.3s both;
+        }
+
+        .profile-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #cbd5e1;
+            margin-bottom: 30px;
+            animation: fadeInUp 1.2s ease-out 0.6s both;
+            letter-spacing: 0.05em;
+        }
+
+        .profile-description {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+            animation: fadeInUp 1.2s ease-out 0.9s both;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .navigation-section {
+            margin-top: 60px;
+            animation: fadeInUp 1.2s ease-out 1.2s both;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #e2e8f0;
+            text-align: center;
+            margin-bottom: 40px;
+            letter-spacing: 0.02em;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-button {
+            position: relative;
+            padding: 20px 35px;
+            min-width: 200px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            overflow: hidden;
+            text-align: center;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .nav-button:nth-child(1) { animation-delay: 0.2s; }
+        .nav-button:nth-child(2) { animation-delay: 0.4s; }
+        .nav-button:nth-child(3) { animation-delay: 0.6s; }
+
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .nav-button:hover::before {
+            left: 100%;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-button:active {
+            transform: translateY(-4px);
+        }
+
+        .button-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .button-icon {
+            font-size: 1.8rem;
+            transition: transform 0.3s ease;
+            margin-bottom: 5px;
+        }
+
+        .nav-button:hover .button-icon {
+            transform: scale(1.1);
+        }
+
+        .button-label {
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        .button-subtitle {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            font-weight: 300;
+        }
+
+        .portfolio-btn {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+            border-color: rgba(236, 72, 153, 0.3);
+        }
+
+        .portfolio-btn:hover {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+            border-color: rgba(236, 72, 153, 0.5);
+            box-shadow: 0 20px 40px rgba(236, 72, 153, 0.2);
+        }
+
+        .book-btn {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .book-btn:hover {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(147, 51, 234, 0.2) 100%);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+        }
+
+        .film-btn {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-color: rgba(168, 85, 247, 0.3);
+        }
+
+        .film-btn:hover {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(236, 72, 153, 0.2) 100%);
+            border-color: rgba(168, 85, 247, 0.5);
+            box-shadow: 0 20px 40px rgba(168, 85, 247, 0.2);
+        }
+
+        .elegant-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: particleFloat 12s linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .footer-signature {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            color: #64748b;
+            text-align: center;
+            animation: fadeInUp 1.2s ease-out 1.5s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profile-title {
+                font-size: 3.5rem;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+            }
+            
+            .nav-button {
+                width: 280px;
+                padding: 18px 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-title {
+                font-size: 2.8rem;
+            }
+            
+            .profile-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .nav-button {
+                width: 250px;
+                padding: 16px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="elegant-grid"></div>
+    <div class="luxury-gradient"></div>
+    
+    <div class="container">
+        <div class="floating-elements">
+            <div class="geometric-shape"></div>
+            <div class="geometric-shape"></div>
+            <div class="geometric-shape"></div>
+            <div class="geometric-shape"></div>
+        </div>
+        
+        <div class="elegant-particles" id="particles"></div>
+
+        <div class="profile-header">
+            <h1 class="profile-title">Executive Profile</h1>
+            <div class="profile-divider"></div>
+            <p class="profile-subtitle">Ivan Cavanneva Royd Nastain</p>
+            <p class="profile-description">
+                Penggemar teknologi yang antusias mengeksplorasi perkembangan digital, aplikasi pintar, dan kecerdasan buatan. Menyukai membaca novel dari berbagai genre sebagai cara memahami emosi dan sudut pandang manusia. Juga menikmati film, baik fiksi maupun dokumenter, sebagai medium refleksi dan hiburan.
+Percaya bahwa teknologi, buku, dan film adalah kombinasi sempurna untuk memperluas wawasan dan membentuk imajinasi.
+            </p>
+        </div>
+
+        <div class="navigation-section">
+            <h2 class="section-title">Explore My Work</h2>
+            <div class="navigation-buttons">
+                <a href="portofolio.html" class="nav-button portfolio-btn">
+                    <div class="button-content">
+                        <div class="button-icon">💼</div>
+                        <div class="button-label">Portfolio</div>
+                        <div class="button-subtitle">Professional Work</div>
+                    </div>
+                </a>
+                <a href="book.html" class="nav-button book-btn">
+                    <div class="button-content">
+                        <div class="button-icon">📖</div>
+                        <div class="button-label">Knowledge</div>
+                        <div class="button-subtitle">Books & Learning</div>
+                    </div>
+                </a>
+                <a href="film.html" class="nav-button film-btn">
+                    <div class="button-content">
+                        <div class="button-icon">🎬</div>
+                        <div class="button-label">Visual Stories</div>
+                        <div class="button-subtitle">Films & Media</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-signature">
+            <p>~Teknologi membuka masa depan, buku mengajarkan makna, film menghadirkan rasa.</p>
+        </div>
+    </div>
+
+    <script>
+        // Create elegant particles
+        function createElegantParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 25;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 12 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Sophisticated hover effects
+        document.querySelectorAll('.nav-button').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px)';
+                
+                // Create subtle glow effect
+                const glowEffect = document.createElement('div');
+                glowEffect.style.position = 'absolute';
+                glowEffect.style.top = '-2px';
+                glowEffect.style.left = '-2px';
+                glowEffect.style.right = '-2px';
+                glowEffect.style.bottom = '-2px';
+                glowEffect.style.borderRadius = '18px';
+                glowEffect.style.background = 'linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05))';
+                glowEffect.style.zIndex = '-1';
+                glowEffect.style.opacity = '0';
+                glowEffect.style.transition = 'opacity 0.3s ease';
+                glowEffect.className = 'glow-effect';
+                
+                this.appendChild(glowEffect);
+                
+                setTimeout(() => {
+                    glowEffect.style.opacity = '1';
+                }, 10);
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                
+                const glowEffect = this.querySelector('.glow-effect');
+                if (glowEffect) {
+                    glowEffect.style.opacity = '0';
+                    setTimeout(() => {
+                        glowEffect.remove();
+                    }, 300);
+                }
+            });
+
+            button.addEventListener('click', function(e) {
+                // Elegant ripple effect
+                const ripple = document.createElement('div');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.3)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'elegantRipple 0.6s ease-out';
+                ripple.style.left = (e.clientX - this.getBoundingClientRect().left) + 'px';
+                ripple.style.top = (e.clientY - this.getBoundingClientRect().top) + 'px';
+                ripple.style.width = ripple.style.height = '40px';
+                ripple.style.marginLeft = ripple.style.marginTop = '-20px';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add elegant ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes elegantRipple {
+                to {
+                    transform: scale(3);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Smooth parallax effect
+        document.addEventListener('mousemove', function(e) {
+            const shapes = document.querySelectorAll('.geometric-shape');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 0.3;
+                const xPos = (x - 0.5) * speed * 15;
+                const yPos = (y - 0.5) * speed * 15;
+                shape.style.transform = `translateX(${xPos}px) translateY(${yPos}px)`;
+            });
+        });
+
+        // Elegant scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Initialize elegant effects
+        window.addEventListener('load', function() {
+            createElegantParticles();
+            
+            // Observe elements for scroll animations
+            document.querySelectorAll('.nav-button, .profile-description').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Smooth cursor interaction
+        document.addEventListener('mousemove', function(e) {
+            const cursor = document.querySelector('.cursor-glow');
+            if (!cursor) {
+                const cursorGlow = document.createElement('div');
+                cursorGlow.className = 'cursor-glow';
+                cursorGlow.style.position = 'fixed';
+                cursorGlow.style.width = '20px';
+                cursorGlow.style.height = '20px';
+                cursorGlow.style.background = 'radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%)';
+                cursorGlow.style.borderRadius = '50%';
+                cursorGlow.style.pointerEvents = 'none';
+                cursorGlow.style.zIndex = '9999';
+                cursorGlow.style.transition = 'all 0.1s ease';
+                document.body.appendChild(cursorGlow);
+            }
+            
+            const cursorGlow = document.querySelector('.cursor-glow');
+            cursorGlow.style.left = (e.clientX - 10) + 'px';
+            cursorGlow.style.top = (e.clientY - 10) + 'px';
+        });
+    </script>
+</body>
+</html>
