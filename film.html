@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 10 Movies & Series</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .video-player {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .current-movie {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .current-movie h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        video {
+            width: 100%;
+            max-width: 800px;
+            height: 450px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .controls {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .control-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            margin: 0 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+
+        .movie-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .movie-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .movie-card.active {
+            border-color: #ff6b6b;
+            background: rgba(255,107,107,0.2);
+        }
+
+        .movie-rank {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .movie-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .movie-info {
+            opacity: 0.8;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .movie-description {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .error-message {
+            background: rgba(255,0,0,0.2);
+            border: 1px solid rgba(255,0,0,0.5);
+            color: #ffcccc;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .video-player {
+                padding: 20px;
+            }
+            
+            video {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎬 Top 10 Movies & Series</h1>
+            <p>Film bagus selalu meninggalkan jejak, bukan cuma di layar, tapi juga di hati.</p>
+        </div>
+
+        <div class="video-player">
+            <div class="current-movie">
+                <h2 id="currentTitle">Pilih film untuk diputar</h2>
+            </div>
+            <div style="text-align: center;">
+                <video id="videoPlayer" controls style="display: none;">
+                    <source id="videoSource" src="" type="video/mp4">
+                    Browser Anda tidak mendukung video HTML5.
+                </video>
+                <div id="videoPlaceholder" class="loading">
+                    Silakan pilih film dari daftar di bawah untuk mulai menonton
+                </div>
+            </div>
+            <div class="controls">
+                <button class="control-btn" onclick="previousMovie()">⏮️ Sebelumnya</button>
+                <button class="control-btn" onclick="togglePlayPause()">⏯️ Play/Pause</button>
+                <button class="control-btn" onclick="nextMovie()">⏭️ Selanjutnya</button>
+            </div>
+        </div>
+
+        <div class="movie-list" id="movieList">
+            <!-- Movie cards akan diisi oleh JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        const movies = [
+            {
+                title: "How to Train Your Dragon",
+                year: "2010",
+                genre: "Fantasy, Adventure",
+                rating: "10",
+                description: "How to Train Your Dragon itu paket lengkap ada aksi seru, humor ringan, dan kisah persahabatan yang bikin hangat hati. Hiccup dan Toothless bener-bener duo ikonik, bikin kita senyum-senyum sekaligus merinding pas adegan terbang. Animasi cakep, musik megah, ceritanya nyentuh film ini bukan cuma tentang naga, tapi tentang berani jadi diri sendiri dan melihat dunia dengan cara baru. Dijamin nonton sekali, langsung pengen repeat!"
+            },
+            {
+                title: "Toririon gêmu",
+                year: "2023", 
+                genre: "Financial Drama, Drama",
+                rating: "10",
+                description: "Trillion Game” itu kayak mimpi gila yang diwujudkan di layar. Bayangin dua sahabat Haru yang super pede dan jago ngomong, plus Gaku yang kutu buku tapi genius di balik komputer bareng-bareng ngejar target gila: jadi triliuner! Drama ini bukan cuma soal bisnis, tapi juga soal keberanian ngelawan arus, percaya sama diri sendiri, dan tentu aja, chemistry gokil antara duo utama yang bikin ceritanya hidup. Dari strategi licik, drama kompetisi, sampai momen kocak mereka, semuanya dibalut dengan pace yang bikin kita nggak bosen."
+            },
+            {
+                title: "Look Back",
+                year: "2024",
+                genre: "Anime, Hand Drawn Animation, Drama", 
+                rating: "10",
+                description: "Look Back itu film yang sederhana tapi manis banget. Kisah Fujino dan Ayumu bikin kita inget rasanya punya mimpi, sahabat, dan perjuangan bareng-bareng. Animasi indah, musik adem, ceritanya hangat sekaligus bikin hati nyesek dikit—perpaduan pas yang bikin nonton jadi berkesan. Cocok banget buat yang suka cerita persahabatan penuh warna dan sentuhan emosional"
+            },
+            {
+                title: "Fury",
+                year: "2014",
+                genre: "War, Drama",
+                rating: "9.8", 
+                description: "Fury itu bukan sekadar film perang, tapi perjalanan seru bareng satu kru tank yang penuh drama, tawa, dan adrenalin. Brad Pitt jadi komandan tangguh yang harus ngebimbing timnya melewati medan perang brutal, sementara tiap kru punya karakter unik yang bikin ceritanya hidup. Setiap dentuman tank bikin merinding, tiap momen tenang bikin deg-degan, dan tiap interaksi kru bikin hangat. Intinya, Fury nyampurin aksi perang yang intens dengan kisah persaudaraan yang bikin kita ikut peduli sama mereka sampai akhir."
+            },
+            {
+                title: "One Piece Fan Letter",
+                year: "2024",
+                genre: "Anime, Drama, Adventure",
+                rating: "9.7",
+                description: "ini bener-bener kayak surat cinta buat semua fans. 🏴‍☠️ Bukan cuma nunjukin aksi kru Topi Jerami, tapi juga gimana mereka dilihat dari mata orang-orang biasa sebagai simbol harapan, mimpi, dan keberanian. Animasinya indah banget, ceritanya hangat, penuh nostalgia, dan sukses bikin hati bergetar.  Dari tawa, haru, sampai semangat, semua diramu jadi satu paket yang bikin kita makin cinta sama dunia One Piece."
+            },
+            {
+                title: "La Grande Maison Tokyo",
+                year: "2019", 
+                genre: "Family, Drama",
+                rating: "9.6",
+                description: "Drama ini tuh kayak perjalanan kuliner yang penuh gairah dan semangat! Kita diajak ikut Natsuki Obana (Takuya Kimura) yang jatuh bangun membangun kembali restoran mewahnya di Tokyo, sambil ngejar bintang Michelin ketiga. Setiap episode seru karena ada tantangan memasak, drama antar-staf, sampai intrik yang bikin deg-degan. Yang paling asik, chemistry antara Obana dan Rinko Hayami (Kyōka Suzuki) bikin cerita hangat sekaligus inspiratif. Visual makanan ditampilkan super menggoda, musiknya pas banget, bikin kita ngerasa ikut di dapur mereka ngiler tapi juga semangat ikut berjuang."
+            },
+            {
+                title: "Spider-Man: Into the Spider-Verse",
+                year: "2018",
+                genre: "Superhero",
+                rating: "9.5",
+                description: "Film ini bener-bener pesta visual dan emosi! Kita diajak ikut Miles Morales, remaja Brooklyn yang baru jadi Spider-Man, ketemu berbagai versi Spider-Man dari dimensi lain, dan belajar apa artinya jadi pahlawan. Animasinya super unik, kayak komik hidup yang gerakannya meledak-ledak keren. Humor tiap karakter bikin ngakak, tapi ada juga momen haru yang bikin tersentuh. Ditambah soundtrack energik yang bikin setiap adegan aksi makin greget"
+            },
+            {
+                title: "Spider-Man: Across the Spider-Verse",
+                year: "2023",
+                genre: "Superhero", 
+                rating: "9.4",
+                description: "Film ini benar-benar pesta visual dan emosional! Miles Morales kembali menghadapi Spider-People dari berbagai dimensi, masing-masing unik dan penuh warna. Tiap adegan kaya akan aksi seru, humor kocak, dan momen haru yang bikin tersentuh. Animasi spektakulernya bikin mata nggak bisa berkedip, musiknya bikin deg-degan, dan ceritanya menyentuh soal tanggung jawab, persahabatan, dan menemukan jati diri."
+            },
+            {
+                title: "Weathering with You",
+                year: "2019",
+                genre: "Anime, Drama, Fantasy",
+                rating: "9.3",
+                description: "Film ini bener-bener magis dan hangat! Kita ikut Hodaka dan Hina menghadapi hujan tak berkesudahan di Tokyo, sambil belajar soal cinta, persahabatan, dan pilihan hidup yang berat. Animasinya memukau hujan, awan, dan cahaya kota digambarkan dengan detail yang bikin mata nggak mau berkedip. Musik RADWIMPS bikin adegan romantis dan dramatis makin hidup, sementara ceritanya nyentuh hati tapi tetap ringan dinikmati"
+            },
+            {
+                title: "How To Train Your Dragon",
+                year: "2025",
+                genre: "Fantasy",
+                rating: "9.0", 
+                description: "Film live action ini bikin kita kembali jatuh cinta sama dunia Berk! Kita ikut Hiccup, remaja jenius tapi sering diremehkan, yang berteman dengan Toothless, naga Night Fury yang legendaris. Dari situ, petualangan mereka penuh aksi, tawa, dan momen mengharukan yang bikin hati hangat. Naga dan lanskap Berk digambarkan dengan detail yang memukau—dari terbang di langit biru yang luas, percikan air saat naga menyelam, sampai cahaya matahari yang memantul di sisik Toothless. Setiap adegan terasa hidup, penuh warna, dan epik, seolah kita benar-benar berada di dunia Hiccup."
+            }
+        ];
+
+        let currentMovieIndex = -1;
+        const videoPlayer = document.getElementById('videoPlayer');
+        const videoSource = document.getElementById('videoSource');
+        const currentTitle = document.getElementById('currentTitle');
+        const videoPlaceholder = document.getElementById('videoPlaceholder');
+
+        function initializeMovieList() {
+            const movieList = document.getElementById('movieList');
+            movieList.innerHTML = '';
+
+            movies.forEach((movie, index) => {
+                const movieCard = document.createElement('div');
+                movieCard.className = 'movie-card';
+                movieCard.onclick = () => playMovie(index);
+                
+                movieCard.innerHTML = `
+                    <div class="movie-rank">${index + 1}</div>
+                    <div class="movie-title">${movie.title}</div>
+                    <div class="movie-info">
+                        ${movie.year} • ${movie.genre} • ⭐ ${movie.rating}
+                    </div>
+                    <div class="movie-description">${movie.description}</div>
+                `;
+                
+                movieList.appendChild(movieCard);
+            });
+        }
+
+        function playMovie(index) {
+            const movieCards = document.querySelectorAll('.movie-card');
+            
+            // Remove active class from all cards
+            movieCards.forEach(card => card.classList.remove('active'));
+            
+            // Add active class to selected card
+            if (movieCards[index]) {
+                movieCards[index].classList.add('active');
+            }
+
+            currentMovieIndex = index;
+            const movie = movies[index];
+            const videoFileName = `movie${index + 1}.mp4`;
+            
+            currentTitle.textContent = movie.title;
+            videoSource.src = videoFileName;
+            
+            // Show loading message
+            videoPlaceholder.style.display = 'block';
+            videoPlaceholder.innerHTML = `
+                <div class="loading">Memuat ${movie.title}...</div>
+            `;
+            videoPlayer.style.display = 'none';
+            
+            // Try to load the video
+            videoPlayer.load();
+            
+            videoPlayer.onloadeddata = function() {
+                videoPlaceholder.style.display = 'none';
+                videoPlayer.style.display = 'block';
+                videoPlayer.play().catch(e => {
+                    console.log('Autoplay prevented:', e);
+                });
+            };
+            
+            videoPlayer.onerror = function() {
+                videoPlaceholder.style.display = 'block';
+                videoPlayer.style.display = 'none';
+                videoPlaceholder.innerHTML = `
+                    <div class="error-message">
+                        ❌ File video tidak ditemukan: ${videoFileName}<br>
+                        <small>Pastikan file ${videoFileName} tersedia di direktori yang sama dengan file HTML ini</small>
+                    </div>
+                `;
+            };
+        }
+
+        function previousMovie() {
+            if (currentMovieIndex > 0) {
+                playMovie(currentMovieIndex - 1);
+            } else if (currentMovieIndex === 0) {
+                playMovie(movies.length - 1); // Loop to last movie
+            }
+        }
+
+        function nextMovie() {
+            if (currentMovieIndex < movies.length - 1 && currentMovieIndex >= 0) {
+                playMovie(currentMovieIndex + 1);
+            } else if (currentMovieIndex === movies.length - 1) {
+                playMovie(0); // Loop to first movie
+            } else {
+                playMovie(0); // Start from first movie if none selected
+            }
+        }
+
+        function togglePlayPause() {
+            if (videoPlayer.style.display !== 'none' && videoSource.src) {
+                if (videoPlayer.paused) {
+                    videoPlayer.play().catch(e => console.log('Play error:', e));
+                } else {
+                    videoPlayer.pause();
+                }
+            }
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowLeft':
+                    previousMovie();
+                    break;
+                case 'ArrowRight':
+                    nextMovie();
+                    break;
+                case ' ':
+                case 'k':
+                    e.preventDefault();
+                    togglePlayPause();
+                    break;
+            }
+        });
+
+        // Auto-play next movie when current ends
+        videoPlayer.addEventListener('ended', function() {
+            setTimeout(nextMovie, 1000); // Wait 1 second then play next
+        });
+
+        // Initialize the movie list on page load
+        initializeMovieList();
+    </script>
+</body>
+</html>
