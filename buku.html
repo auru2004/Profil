@@ -21,12 +21,16 @@
     .placeholder-card{background:rgba(44,74,110,0.08);border:1px solid rgba(44,74,110,0.2);border-radius:2px;padding:3rem;text-align:center;}
     .placeholder-card p{font-family:'Klee One',cursive;color:rgba(245,239,230,0.6);line-height:1.8;}
     .tag{display:inline-block;background:rgba(44,74,110,0.2);border:1px solid rgba(44,74,110,0.4);padding:0.2rem 0.8rem;border-radius:2px;font-size:0.7rem;letter-spacing:0.2em;color:#7ba7d6;margin:0.3rem;}
-    .book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 2rem; }
-    .book-card { background: rgba(44,74,110,0.08); border: 1px solid rgba(44,74,110,0.2); border-radius: 4px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column;}
-    .book-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3), 0 0 15px rgba(44,74,110,0.4); }
-    .book-cover { width: 100%; height: 300px; object-fit: cover; border-bottom: 1px solid rgba(44,74,110,0.2); }
-    .book-info { padding: 1rem; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: center;}
-    .book-title { font-family: 'Klee One', cursive; font-size: 1.1rem; color: rgba(245,239,230,0.9); line-height: 1.4; }
+    .book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 3rem; padding: 2rem 0; perspective: 1200px; }
+    .book-card { position: relative; background: rgba(20, 25, 30, 0.4); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; overflow: hidden; transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); display: flex; flex-direction: column; backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5); }
+    .book-card:hover { transform: translateY(-12px) scale(1.02); box-shadow: 0 20px 40px -5px rgba(0,0,0,0.7), 0 0 25px rgba(44,74,110,0.4), inset 0 0 0 1px rgba(201,168,76,0.2); border-color: transparent; }
+    .book-cover { width: 100%; height: 320px; object-fit: cover; border-bottom: 1px solid rgba(255,255,255,0.05); transition: transform 0.8s ease, filter 0.8s ease; filter: brightness(0.9) contrast(1.1); }
+    .book-card:hover .book-cover { transform: scale(1.08); filter: brightness(1.1) contrast(1.1); }
+    .book-info { padding: 1.5rem 1rem; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(to bottom, rgba(10, 8, 4, 0), rgba(10, 8, 4, 0.9)); position: relative; z-index: 1; }
+    .book-title { font-family: 'Klee One', cursive; font-size: 1.15rem; font-weight: bold; color: rgba(245,239,230,0.9); line-height: 1.4; text-shadow: 0 2px 4px rgba(0,0,0,0.8); transition: color 0.3s; }
+    .book-card:hover .book-title { color: var(--gold); }
+    .book-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent); transform: skewX(-25deg); transition: left 0.7s ease; z-index: 2; pointer-events: none; }
+    .book-card:hover::before { left: 200%; }
     footer{text-align:center;padding:3rem;color:var(--muted);font-size:0.75rem;letter-spacing:0.3em;}
   </style>
 </head>
