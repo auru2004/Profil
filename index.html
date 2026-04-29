@@ -1,474 +1,764 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Saya - Ivan Cavanneva</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ivan Cavanneva Royd Nastain</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&family=Syne:wght@400;700;800&family=Klee+One&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ink: #1a1209;
+      --paper: #f5efe6;
+      --red: #c0392b;
+      --gold: #c9a84c;
+      --muted: #7a6a52;
+      --accent: #2c4a6e;
+      --sakura: #e8b4bc;
+    }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
-        /* Animated background particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
+    html, body {
+      width:100%; min-height:100vh;
+      background: var(--ink);
+      font-family: 'Syne', sans-serif;
+      color: var(--paper);
+      overflow-x: hidden;
+    }
 
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 50%;
-            animation: float 6s infinite ease-in-out;
-        }
+    /* ===== JAPANESE DOOR (FUSUMA) INTRO ===== */
+    #fusuma {
+      position: fixed; inset:0; z-index:9999;
+      display:flex; pointer-events: all;
+    }
+    .fusuma-panel {
+      flex:1; height:100%;
+      background: #111008;
+      display:flex; align-items:center; justify-content:center;
+      overflow:hidden;
+      transition: transform 1.4s cubic-bezier(0.77,0,0.18,1);
+    }
+    .fusuma-panel.left  { border-right: 2px solid var(--gold); }
+    .fusuma-panel.right { border-left:  2px solid var(--gold); }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
+    .fusuma-panel .panel-inner {
+      position:relative; width:100%; height:100%;
+      display:flex; align-items:center; justify-content:center;
+    }
 
-        /* Header */
-        .header {
-            background: rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
+    /* Japanese kanji watermark */
+    .fusuma-kanji {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 28vw;
+      font-weight:700;
+      color: rgba(201,168,76,0.04);
+      line-height:1;
+      position:absolute;
+      user-select:none;
+      letter-spacing:-0.05em;
+    }
 
-        .nav {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            list-style: none;
-        }
+    /* Vertical stripe pattern */
+    .fusuma-stripes {
+      position:absolute; inset:0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 18px,
+        rgba(201,168,76,0.06) 18px,
+        rgba(201,168,76,0.06) 20px
+      );
+    }
 
-        .nav a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.1);
-        }
+    /* Center mon (family crest circle) */
+    .fusuma-mon {
+      position:relative; z-index:2;
+      width:100px; height:100px;
+      border: 2px solid rgba(201,168,76,0.7);
+      border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .fusuma-mon::before {
+      content:'';
+      position:absolute; inset:6px;
+      border:1px solid rgba(201,168,76,0.4);
+      border-radius:50%;
+    }
+    .fusuma-mon-text {
+      font-family:'Noto Serif JP',serif;
+      font-size:2.2rem;
+      color:var(--gold);
+      opacity:0.9;
+    }
 
-        .nav a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
+    /* Horizontal wood grain lines */
+    .fusuma-grain {
+      position:absolute; inset:0;
+      background: repeating-linear-gradient(
+        180deg,
+        transparent 0px, transparent 60px,
+        rgba(255,255,255,0.015) 60px, rgba(255,255,255,0.015) 61px
+      );
+    }
 
-        .nav a.active {
-            background: rgba(255, 255, 255, 0.3);
-        }
+    /* Door handle */
+    .fusuma-handle {
+      position:absolute;
+      width:8px; height:60px;
+      background: linear-gradient(180deg, var(--gold), #a07820, var(--gold));
+      border-radius:4px;
+      top:50%; transform:translateY(-50%);
+      box-shadow: 0 0 12px rgba(201,168,76,0.4);
+    }
+    .panel.left .fusuma-handle  { right: 14px; }
+    .panel.right .fusuma-handle { left:  14px; }
 
-        /* Main container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 100px 2rem 2rem;
-        }
+    /* Welcome text center */
+    #fusuma-welcome {
+      position:fixed; inset:0; z-index:10000;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      pointer-events:none;
+      animation: welcomeFade 3.2s ease forwards;
+    }
+    @keyframes welcomeFade {
+      0%   { opacity:0; transform:translateY(8px); }
+      20%  { opacity:1; transform:translateY(0);   }
+      70%  { opacity:1; }
+      100% { opacity:0; }
+    }
+    #fusuma-welcome h1 {
+      font-family:'Noto Serif JP', serif;
+      font-size: clamp(1.2rem, 4vw, 2.2rem);
+      color:var(--gold);
+      letter-spacing:0.4em;
+      font-weight:300;
+    }
+    #fusuma-welcome .jp-sub {
+      font-family:'Noto Serif JP', serif;
+      font-size: clamp(0.7rem, 2vw, 1rem);
+      color: rgba(201,168,76,0.5);
+      letter-spacing:0.6em;
+      margin-top:0.5rem;
+    }
 
-        /* Hero section */
-        .hero {
-            text-align: center;
-            padding: 4rem 0;
-            position: relative;
-        }
+    /* OPEN animation */
+    #fusuma.open .fusuma-panel.left  { transform: translateX(-100%); }
+    #fusuma.open .fusuma-panel.right { transform: translateX(100%);  }
 
-        .anime-character {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 2rem;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            animation: bounce 2s infinite;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
+    /* ===== MAIN PAGE ===== */
+    #main-content {
+      opacity:0;
+      transition: opacity 0.8s ease 0.3s;
+    }
+    #main-content.visible { opacity:1; }
 
-        .anime-character::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-            transform: rotate(45deg);
-            animation: shine 3s infinite;
-        }
+    /* ===== NOISE OVERLAY ===== */
+    body::before {
+      content:'';
+      position:fixed; inset:0; z-index:0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      opacity:0.4; pointer-events:none;
+    }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
+    /* ===== HERO SECTION ===== */
+    .hero {
+      position:relative; z-index:1;
+      min-height:100vh;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      padding:4rem 2rem;
+      background:
+        radial-gradient(ellipse 60% 60% at 20% 80%, rgba(192,57,43,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 80% 20%, rgba(44,74,110,0.1) 0%, transparent 70%),
+        linear-gradient(160deg, #1a1209 0%, #0e0b06 50%, #141010 100%);
+      overflow:hidden;
+    }
 
-        @keyframes shine {
-            0% { transform: translateX(-200%) translateY(-200%) rotate(45deg); }
-            100% { transform: translateX(200%) translateY(200%) rotate(45deg); }
-        }
+    /* Sakura petals */
+    .petal {
+      position:absolute;
+      width:8px; height:10px;
+      background: radial-gradient(ellipse, rgba(232,180,188,0.6), rgba(232,180,188,0.1));
+      border-radius:50% 0 50% 0;
+      animation: petalFall linear infinite;
+      pointer-events:none;
+    }
+    @keyframes petalFall {
+      0%   { transform:translateY(-20px) rotate(0deg)   translateX(0);    opacity:0; }
+      10%  { opacity:0.7; }
+      90%  { opacity:0.4; }
+      100% { transform:translateY(110vh) rotate(720deg) translateX(80px); opacity:0; }
+    }
 
-        .hero h1 {
-            font-size: 3rem;
-            color: white;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: textGlow 2s ease-in-out infinite alternate;
-        }
+    /* Vertical japanese lines decoration */
+    .hero-lines {
+      position:absolute; top:0; right:8%; height:100%;
+      display:flex; gap:18px; pointer-events:none; opacity:0.06;
+    }
+    .hero-lines span {
+      width:1px; height:100%;
+      background: linear-gradient(180deg, transparent, var(--gold), transparent);
+    }
 
-        @keyframes textGlow {
-            from { text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-            to { text-shadow: 2px 2px 20px rgba(255,255,255,0.3); }
-        }
+    /* Red sun disc */
+    .sun-disc {
+      position:absolute; top:10%; right:12%;
+      width:200px; height:200px;
+      border-radius:50%;
+      background: radial-gradient(circle, rgba(192,57,43,0.15) 0%, transparent 70%);
+      border:1px solid rgba(192,57,43,0.12);
+      animation: sunPulse 6s ease-in-out infinite;
+    }
+    @keyframes sunPulse {
+      0%,100%{transform:scale(1); opacity:0.6;}
+      50%    {transform:scale(1.08); opacity:1;}
+    }
 
-        .hero p {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.9);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
+    /* Profile image */
+    .profile-ring {
+      position:relative;
+      width:200px; height:200px;
+      margin-bottom:2rem;
+      animation: profileFloat 5s ease-in-out infinite;
+    }
+    @keyframes profileFloat {
+      0%,100%{transform:translateY(0);}
+      50%    {transform:translateY(-10px);}
+    }
+    .profile-ring::before {
+      content:'';
+      position:absolute; inset:-8px;
+      border-radius:50%;
+      background: conic-gradient(
+        var(--gold) 0%, var(--red) 33%, var(--accent) 66%, var(--gold) 100%
+      );
+      animation: ringRotate 8s linear infinite;
+      opacity:0.8;
+    }
+    @keyframes ringRotate { to{transform:rotate(360deg);} }
+    .profile-ring::after {
+      content:'';
+      position:absolute; inset:-3px;
+      border-radius:50%;
+      background: var(--ink);
+    }
+    .profile-img {
+      position:relative; z-index:1;
+      width:100%; height:100%;
+      border-radius:50%;
+      object-fit:cover;
+      display:flex; align-items:center; justify-content:center;
+      background: linear-gradient(135deg, #2a1f10, #1a1209);
+      overflow:hidden;
+    }
+    .profile-img img {
+      width:100%; height:100%;
+      object-fit:cover; border-radius:50%;
+    }
+    /* Placeholder if no gif */
+    .profile-img .placeholder {
+      font-family:'Noto Serif JP',serif;
+      font-size:4rem;
+      color:var(--gold);
+      opacity:0.4;
+    }
 
-        /* Cards */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
+    /* Name */
+    .hero-name {
+      font-family:'Syne',sans-serif;
+      font-size: clamp(1.8rem, 5vw, 3.2rem);
+      font-weight:800;
+      text-align:center;
+      letter-spacing:0.05em;
+      line-height:1.1;
+      background: linear-gradient(135deg, var(--paper) 0%, var(--gold) 60%, var(--paper) 100%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text;
+      animation: nameShimmer 4s ease-in-out infinite;
+      background-size:200%;
+    }
+    @keyframes nameShimmer {
+      0%,100%{background-position:0%;}
+      50%    {background-position:100%;}
+    }
 
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
+    .hero-name-jp {
+      font-family:'Noto Serif JP',serif;
+      font-size:0.85rem;
+      letter-spacing:0.5em;
+      color:var(--muted);
+      text-align:center;
+      margin-top:0.3rem;
+      font-weight:300;
+    }
 
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transition: left 0.5s;
-        }
+    /* Horizontal divider */
+    .divider {
+      width:120px; height:1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin:2rem auto;
+      position:relative;
+    }
+    .divider::before {
+      content:'❖';
+      position:absolute; top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      color:var(--gold); font-size:0.7rem;
+      background:var(--ink); padding:0 6px;
+    }
 
-        .card:hover {
-            transform: translateY(-10px) scale(1.02);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
+    /* Bio text */
+    .bio-card {
+      max-width:640px;
+      background: rgba(245,239,230,0.04);
+      border:1px solid rgba(201,168,76,0.15);
+      border-radius:2px;
+      padding:2rem 2.5rem;
+      text-align:center;
+      position:relative;
+      backdrop-filter:blur(4px);
+    }
+    .bio-card::before, .bio-card::after {
+      content:''; position:absolute;
+      width:24px; height:24px;
+      border-color:var(--gold); border-style:solid;
+      opacity:0.5;
+    }
+    .bio-card::before { top:-1px; left:-1px; border-width:1px 0 0 1px; }
+    .bio-card::after  { bottom:-1px; right:-1px; border-width:0 1px 1px 0; }
 
-        .card:hover::before {
-            left: 100%;
-        }
+    .bio-card p {
+      font-family:'Klee One', cursive;
+      font-size: clamp(0.9rem, 2vw, 1.05rem);
+      line-height:1.85;
+      color: rgba(245,239,230,0.82);
+    }
 
-        .card-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: block;
-            animation: iconFloat 3s ease-in-out infinite;
-        }
+    /* Scroll indicator */
+    .scroll-hint {
+      margin-top:3rem;
+      display:flex; flex-direction:column; align-items:center; gap:0.4rem;
+      color:var(--muted); font-size:0.7rem; letter-spacing:0.3em;
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+    @keyframes scrollBounce {
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(5px);}
+    }
+    .scroll-hint::after {
+      content:''; width:1px; height:40px;
+      background:linear-gradient(180deg,var(--gold),transparent);
+    }
 
-        @keyframes iconFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
+    /* ===== PHILOSOPHY SECTION ===== */
+    .philosophy {
+      position:relative; z-index:1;
+      padding:6rem 2rem;
+      background:
+        linear-gradient(180deg, #0e0b06 0%, #13100a 100%);
+      display:flex; justify-content:center;
+    }
+    .philosophy-inner {
+      max-width:800px; width:100%;
+      position:relative;
+    }
+    .philosophy-bg-text {
+      position:absolute;
+      font-family:'Noto Serif JP',serif;
+      font-size:10rem; font-weight:700;
+      color:rgba(201,168,76,0.03);
+      top:-2rem; right:-2rem;
+      line-height:1;
+      pointer-events:none; user-select:none;
+      writing-mode:vertical-rl;
+    }
+    .section-label {
+      font-size:0.7rem;
+      letter-spacing:0.5em;
+      color:var(--red);
+      text-transform:uppercase;
+      margin-bottom:1rem;
+      display:flex; align-items:center; gap:1rem;
+    }
+    .section-label::after {
+      content:''; flex:1;
+      height:1px;
+      background:linear-gradient(90deg,var(--red),transparent);
+      opacity:0.4;
+    }
+    .philosophy h2 {
+      font-family:'Syne',sans-serif;
+      font-size: clamp(1.4rem,4vw,2.2rem);
+      font-weight:800;
+      color:var(--paper);
+      margin-bottom:1.5rem;
+      line-height:1.2;
+    }
+    .quote-mark {
+      font-family:'Noto Serif JP',serif;
+      font-size:4rem;
+      color:var(--gold);
+      opacity:0.3;
+      line-height:0;
+      vertical-align:-1.5rem;
+    }
+    .philosophy-text {
+      font-family:'Klee One',cursive;
+      font-size: clamp(0.9rem,2vw,1.05rem);
+      line-height:1.9;
+      color: rgba(245,239,230,0.78);
+      position:relative;
+      padding-left:1.5rem;
+      border-left:2px solid rgba(201,168,76,0.2);
+    }
+    .fake-it {
+      font-family:'Syne',sans-serif;
+      font-size: clamp(1.1rem,3vw,1.6rem);
+      font-weight:800;
+      color:var(--gold);
+      letter-spacing:0.08em;
+      display:block;
+      margin:1rem 0;
+    }
 
-        .card h3 {
-            color: white;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
+    /* ===== MENU SECTION ===== */
+    .menu-section {
+      position:relative; z-index:1;
+      padding:6rem 2rem;
+      background:#0a0804;
+    }
+    .menu-section .section-label { justify-content:flex-start; }
+    .menu-title {
+      font-family:'Syne',sans-serif;
+      font-size: clamp(1.4rem,4vw,2rem);
+      font-weight:800;
+      color:var(--paper);
+      margin-bottom:3rem;
+      text-align:center;
+    }
+    .menu-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap:1.5rem;
+      max-width:960px; margin:0 auto;
+    }
 
-        .card p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
-        }
+    .menu-card {
+      position:relative;
+      background: rgba(255,255,255,0.02);
+      border:1px solid rgba(201,168,76,0.12);
+      border-radius:2px;
+      padding:2.5rem 2rem;
+      text-decoration:none;
+      color:var(--paper);
+      display:flex; flex-direction:column; align-items:center; gap:1rem;
+      overflow:hidden;
+      cursor:pointer;
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1),
+                  border-color 0.3s, background 0.3s;
+    }
+    .menu-card::before {
+      content:'';
+      position:absolute; inset:0;
+      background: linear-gradient(135deg, transparent 40%, rgba(201,168,76,0.05));
+      opacity:0; transition:opacity 0.3s;
+    }
+    .menu-card:hover { 
+      transform:translateY(-8px) scale(1.02);
+      border-color:rgba(201,168,76,0.4);
+      background:rgba(201,168,76,0.04);
+    }
+    .menu-card:hover::before { opacity:1; }
 
-        /* Floating animation elements */
-        .floating-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
+    .menu-card-glow {
+      position:absolute;
+      width:100px; height:100px;
+      border-radius:50%;
+      filter:blur(30px);
+      opacity:0; top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      transition:opacity 0.4s;
+      pointer-events:none;
+    }
+    .menu-card:hover .menu-card-glow { opacity:0.15; }
 
-        .floating-icon {
-            position: absolute;
-            font-size: 2rem;
-            opacity: 0.2;
-            animation: floatingDance 15s infinite ease-in-out;
-        }
+    .menu-icon {
+      font-size:2.5rem;
+      filter:drop-shadow(0 0 10px currentColor);
+      transition:transform 0.3s;
+    }
+    .menu-card:hover .menu-icon { transform:scale(1.2) rotate(-5deg); }
 
-        @keyframes floatingDance {
-            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            25% { transform: translate(100px, -50px) rotate(90deg) scale(1.2); }
-            50% { transform: translate(-50px, -100px) rotate(180deg) scale(0.8); }
-            75% { transform: translate(-100px, 50px) rotate(270deg) scale(1.1); }
-        }
+    .menu-card-title {
+      font-family:'Syne',sans-serif;
+      font-size:1.1rem;
+      font-weight:700;
+      letter-spacing:0.1em;
+      text-transform:uppercase;
+    }
+    .menu-card-sub {
+      font-family:'Noto Serif JP',serif;
+      font-size:0.7rem;
+      color:var(--muted);
+      letter-spacing:0.3em;
+    }
 
-        /* Enhanced card animations */
-        .cards-grid {
-            animation: gridSlideUp 1s ease-out 0.5s both;
-            opacity: 0;
-        }
+    .menu-card-line {
+      width:30px; height:1px;
+      background:var(--gold);
+      opacity:0.3; transition:width 0.3s, opacity 0.3s;
+    }
+    .menu-card:hover .menu-card-line { width:60px; opacity:0.7; }
 
-        @keyframes gridSlideUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    /* Card accent colors */
+    .card-buku   .menu-card-glow { background:var(--accent); }
+    .card-musik  .menu-card-glow { background:#6a4c93; }
+    .card-film   .menu-card-glow { background:var(--red); }
+    .card-projek .menu-card-glow { background:#2d7d4f; }
 
-        .card:nth-child(1) { animation-delay: 0.2s; }
-        .card:nth-child(2) { animation-delay: 0.4s; }
-        .card:nth-child(3) { animation-delay: 0.6s; }
+    .card-buku   { --card-accent: var(--accent); }
+    .card-musik  { --card-accent: #6a4c93; }
+    .card-film   { --card-accent: var(--red); }
+    .card-projek { --card-accent: #2d7d4f; }
 
-        .card {
-            animation: cardSlideIn 0.8s ease-out both;
-            opacity: 0;
-        }
+    .menu-card::after {
+      content:'';
+      position:absolute; bottom:0; left:0; right:0;
+      height:2px;
+      background:var(--card-accent,var(--gold));
+      transform:scaleX(0); transform-origin:left;
+      transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .menu-card:hover::after { transform:scaleX(1); }
 
-        @keyframes cardSlideIn {
-            from { opacity: 0; transform: translateY(30px) scale(0.9); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
+    /* ===== FOOTER ===== */
+    footer {
+      position:relative; z-index:1;
+      padding:3rem 2rem;
+      text-align:center;
+      border-top:1px solid rgba(201,168,76,0.08);
+      background:#0a0804;
+    }
+    footer .jp-footer {
+      font-family:'Noto Serif JP',serif;
+      font-size:0.75rem;
+      letter-spacing:0.4em;
+      color:var(--muted);
+    }
+    footer .copy {
+      font-size:0.7rem;
+      color:rgba(122,106,82,0.5);
+      margin-top:0.5rem;
+      letter-spacing:0.1em;
+    }
 
-        /* Welcome message */
-        .welcome-msg {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            color: white;
-            padding: 2rem 3rem;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            z-index: 2000;
-            animation: welcomeSlide 1s ease-out;
-        }
+    /* ===== SCROLL ANIMATIONS ===== */
+    .reveal {
+      opacity:0; transform:translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity:1; transform:translateY(0);
+    }
 
-        .welcome-msg.hide {
-            animation: welcomeHide 0.5s ease-out forwards;
-        }
-
-        @keyframes welcomeSlide {
-            from { transform: translate(-50%, -50%) scale(0) rotate(180deg); opacity: 0; }
-            to { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 1; }
-        }
-
-        @keyframes welcomeHide {
-            to { transform: translate(-50%, -50%) scale(0) rotate(-180deg); opacity: 0; }
-        }
-
-        .welcome-msg h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            animation: textBounce 0.8s ease-out 0.5s both;
-        }
-
-        .welcome-msg p {
-            animation: textBounce 0.8s ease-out 0.7s both;
-            opacity: 0;
-        }
-
-        @keyframes textBounce {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .close-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-top: 1rem;
-            transition: all 0.3s ease;
-            animation: textBounce 0.8s ease-out 0.9s both;
-            opacity: 0;
-        }
-
-        .close-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav {
-                flex-wrap: wrap;
-                gap: 1rem;
-                padding: 0 1rem;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .container {
-                padding: 80px 1rem 1rem;
-            }
-
-            .nav-cards {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width:4px; }
+    ::-webkit-scrollbar-track { background:#0a0804; }
+    ::-webkit-scrollbar-thumb { background:var(--gold); border-radius:2px; }
+  </style>
 </head>
 <body>
-    <!-- Animated particles background -->
-    <div class="particles" id="particles"></div>
 
-    <!-- Floating elements -->
-    <div class="floating-elements" id="floatingElements"></div>
-
-    <!-- Welcome message -->
-    <div class="welcome-msg" id="welcomeMsg">
-        <h2>🎌 Konnichiwa! 🎌</h2>
-        <p>Selamat datang di profil saya!</p>
-        <p>Mari jelajahi dunia favorit saya bersama!</p>
-        <button class="close-btn" onclick="closeWelcome()">Masuk →</button>
+<!-- ===== FUSUMA (JAPANESE DOOR) INTRO ===== -->
+<div id="fusuma">
+  <!-- Left panel -->
+  <div class="fusuma-panel left">
+    <div class="panel-inner">
+      <div class="fusuma-stripes"></div>
+      <div class="fusuma-grain"></div>
+      <div class="fusuma-kanji">門</div>
+      <div class="fusuma-mon">
+        <span class="fusuma-mon-text">伊</span>
+      </div>
+      <div class="fusuma-handle" style="right:14px"></div>
     </div>
-
-    <!-- Header -->
-    <header class="header">
-        <nav>
-            <ul class="nav">
-                <li><a href="index.html" class="active">🏠 Beranda</a></li>
-                <li><a href="musik.html">🎵 Musik Favorit</a></li>
-                <li><a href="bacaan.html">📚 Bacaan Favorit</a></li>
-                <li><a href="film.html">🎬 Film/Series Favorit</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="container">
-        <!-- Home Page -->
-        <section id="home">
-            <div class="hero">
-              <div class="anime-character">
-    <img src="profil.gif" alt="Anime Character" />
+  </div>
+  <!-- Right panel -->
+  <div class="fusuma-panel right">
+    <div class="panel-inner">
+      <div class="fusuma-stripes"></div>
+      <div class="fusuma-grain"></div>
+      <div class="fusuma-kanji" style="right:auto;left:-10%;">扉</div>
+      <div class="fusuma-mon">
+        <span class="fusuma-mon-text">凡</span>
+      </div>
+      <div class="fusuma-handle" style="left:14px"></div>
+    </div>
+  </div>
 </div>
 
-                <h1>Halo, Saya Ivan Cavanneva Royd</h1>
-                <p>
-                    Aku penggemar anime, musik, buku, film, dan juga teknologi. semua hal seru yang bikin hidup lebih berwarna. Di sini, kamu bisa ikutan jelajah hal-hal favoritku, siapa tahu malah nemu inspirasi baru yang cocok juga buat kamu. Yuk, kita seru-seruan bareng.
-                </p>
-            </div>
-                
-                <div class="card">
-                    <span class="card-icon">🌟</span>
-                    <h3>Philosophy</h3>
-                    <p>Kadang kita belum jadi versi terbaik dari diri sendiri, tapi bukan berarti kita nggak bisa bertindak seolah sudah sampai di sana. "FAKE IT TILL YOU MAKE IT" bukan soal kepalsuan, tapi soal keyakinan. Dengan berani melangkah, bersikap percaya diri, dan membiasakan diri hidup dalam ‘peran’ yang kita impikan, perlahan-lahan peran itu akan jadi kenyataan. Kita sedang melatih pikiran dan tindakan agar selaras dengan masa depan yang kita mau.</p>
-                </div>
-            </div>
+<!-- Welcome overlay text -->
+<div id="fusuma-welcome">
+  <h1>ようこそ</h1>
+  <div class="jp-sub">SELAMAT DATANG</div>
+</div>
 
+<!-- ===== MAIN CONTENT ===== -->
+<div id="main-content">
 
-        </section>
+  <!-- HERO -->
+  <section class="hero">
+    <!-- Decorative lines -->
+    <div class="hero-lines">
+      <span></span><span></span><span></span>
+    </div>
+    <!-- Sun disc -->
+    <div class="sun-disc"></div>
+
+    <!-- Sakura petals (generated by JS) -->
+
+    <!-- Profile Image -->
+    <div class="profile-ring">
+      <div class="profile-img">
+        <img src="profil/profil.gif" alt="Ivan" 
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
+        <div class="placeholder" style="display:none; width:100%; height:100%; align-items:center; justify-content:center;">凡</div>
+      </div>
     </div>
 
-    <script>
-        // Create animated particles
-        function createParticles() {
-            const particles = document.getElementById('particles');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                particles.appendChild(particle);
-            }
-        }
+    <!-- Name -->
+    <h1 class="hero-name">Ivan Cavanneva<br>Royd Nastain</h1>
+    <div class="hero-name-jp">イヴァン・カヴァンネバ・ロイド・ナスタイン</div>
 
-        // Create floating elements
-        function createFloatingElements() {
-            const container = document.getElementById('floatingElements');
-            const icons = ['🎨', '⚡', '🌟', '🎭', '💫', '✨', '🌙', '⭐'];
-            
-            for (let i = 0; i < 12; i++) {
-                const element = document.createElement('div');
-                element.className = 'floating-icon';
-                element.textContent = icons[Math.floor(Math.random() * icons.length)];
-                element.style.left = Math.random() * 100 + '%';
-                element.style.top = Math.random() * 100 + '%';
-                element.style.animationDelay = Math.random() * 15 + 's';
-                element.style.animationDuration = (Math.random() * 10 + 15) + 's';
-                container.appendChild(element);
-            }
-        }
+    <div class="divider"></div>
 
-        // Close welcome message
-        function closeWelcome() {
-            const welcomeMsg = document.getElementById('welcomeMsg');
-            welcomeMsg.classList.add('hide');
-            setTimeout(() => {
-                welcomeMsg.style.display = 'none';
-            }, 500);
-        }
+    <!-- Bio -->
+    <div class="bio-card reveal">
+      <p>Aku penggemar anime, musik, buku, film, dan juga teknologi. Semua hal seru yang bikin hidup lebih berwarna. Di sini, kamu bisa ikutan jelajah hal-hal favoritku, siapa tahu malah nemu inspirasi baru yang cocok juga buat kamu. Yuk, kita seru-seruan bareng.</p>
+    </div>
 
-        // Auto close welcome message after 5 seconds
-        setTimeout(closeWelcome, 5000);
+    <div class="scroll-hint">SCROLL</div>
+  </section>
 
-        // Initialize
-        createParticles();
-        createFloatingElements();
+  <!-- PHILOSOPHY -->
+  <section class="philosophy">
+    <div class="philosophy-inner reveal">
+      <div class="philosophy-bg-text">哲</div>
+      <div class="section-label">Philosophy</div>
+      <h2>Prinsip Hidupku</h2>
+      <div class="philosophy-text">
+        Kadang kita belum jadi versi terbaik dari diri sendiri, tapi bukan berarti kita nggak bisa bertindak seolah sudah sampai di sana.
+        <span class="fake-it">"FAKE IT TILL YOU MAKE IT"</span>
+        bukan soal kepalsuan, tapi soal keyakinan. Dengan berani melangkah, bersikap percaya diri, dan membiasakan diri hidup dalam 'peran' yang kita impikan, perlahan-lahan peran itu akan jadi kenyataan. Kita sedang melatih pikiran dan tindakan agar selaras dengan masa depan yang kita mau.
+      </div>
+    </div>
+  </section>
 
-        // Add some interactive effects
-        document.addEventListener('mousemove', (e) => {
-            const character = document.querySelector('.anime-character');
-            if (character) {
-                const x = (e.clientX / window.innerWidth) * 20 - 10;
-                const y = (e.clientY / window.innerHeight) * 20 - 10;
-                character.style.transform = `translate(${x}px, ${y}px)`;
-            }
-        });
+  <!-- MENU -->
+  <section class="menu-section">
+    <div style="max-width:960px; margin:0 auto;">
+      <div class="section-label">Jelajahi</div>
+      <div class="menu-title reveal">Dunia Favoritku</div>
+      <div class="menu-grid">
 
-        // Add click effect to character
-        document.querySelector('.anime-character').addEventListener('click', function() {
-            this.style.animation = 'none';
-            this.offsetHeight; // Trigger reflow
-            this.style.animation = 'bounce 0.6s ease-in-out';
-        });
-    </script>
+        <a href="buku.html" class="menu-card card-buku reveal">
+          <div class="menu-card-glow"></div>
+          <div class="menu-icon">📚</div>
+          <div class="menu-card-title">Buku</div>
+          <div class="menu-card-line"></div>
+          <div class="menu-card-sub">本 · BOOK</div>
+        </a>
+
+        <a href="musik.html" class="menu-card card-musik reveal">
+          <div class="menu-card-glow"></div>
+          <div class="menu-icon">🎵</div>
+          <div class="menu-card-title">Musik</div>
+          <div class="menu-card-line"></div>
+          <div class="menu-card-sub">音楽 · MUSIC</div>
+        </a>
+
+        <a href="film.html" class="menu-card card-film reveal">
+          <div class="menu-card-glow"></div>
+          <div class="menu-icon">🎬</div>
+          <div class="menu-card-title">Film / Series</div>
+          <div class="menu-card-line"></div>
+          <div class="menu-card-sub">映画 · FILM</div>
+        </a>
+
+        <a href="projek.html" class="menu-card card-projek reveal">
+          <div class="menu-card-glow"></div>
+          <div class="menu-icon">⚙️</div>
+          <div class="menu-card-title">Projek</div>
+          <div class="menu-card-line"></div>
+          <div class="menu-card-sub">作品 · PROJECT</div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="jp-footer">人生は旅である · Hidup adalah perjalanan</div>
+    <div class="copy">© 2025 Ivan Cavanneva Royd Nastain · All Rights Reserved</div>
+  </footer>
+
+</div><!-- end #main-content -->
+
+<script>
+  /* ===== FUSUMA OPEN SEQUENCE ===== */
+  window.addEventListener('load', () => {
+    const fusuma  = document.getElementById('fusuma');
+    const welcome = document.getElementById('fusuma-welcome');
+    const main    = document.getElementById('main-content');
+
+    // After 2.8s open the doors
+    setTimeout(() => {
+      fusuma.classList.add('open');
+      // Fade in main content
+      setTimeout(() => {
+        main.classList.add('visible');
+        document.body.style.overflow = 'auto';
+        // Remove fusuma from DOM
+        setTimeout(() => {
+          fusuma.remove();
+          welcome.remove();
+        }, 1600);
+      }, 600);
+    }, 2800);
+
+    document.body.style.overflow = 'hidden';
+  });
+
+  /* ===== SAKURA PETALS ===== */
+  const hero = document.querySelector('.hero');
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.style.cssText = `
+      left: ${Math.random()*100}%;
+      top: ${Math.random()*100}%;
+      width: ${5+Math.random()*6}px;
+      height: ${6+Math.random()*7}px;
+      animation-duration: ${6+Math.random()*8}s;
+      animation-delay: ${Math.random()*6}s;
+      opacity: ${0.3+Math.random()*0.5};
+    `;
+    hero.appendChild(p);
+  }
+
+  /* ===== SCROLL REVEAL ===== */
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer  = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
