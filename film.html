@@ -17,9 +17,18 @@
     .page-icon{font-size:4rem;margin-bottom:1rem;filter:drop-shadow(0 0 20px #c0392b);}
     h1{font-size:clamp(2rem,6vw,4rem);font-weight:800;background:linear-gradient(135deg,#f5efe6,#e05744,#f5efe6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
     .content{max-width:900px;margin:0 auto;padding:2rem;}
-    .placeholder-card{background:rgba(192,57,43,0.06);border:1px solid rgba(192,57,43,0.2);border-radius:2px;padding:3rem;text-align:center;}
-    .placeholder-card p{font-family:'Klee One',cursive;color:rgba(245,239,230,0.6);line-height:1.8;}
-    .tag{display:inline-block;background:rgba(192,57,43,0.15);border:1px solid rgba(192,57,43,0.3);padding:0.2rem 0.8rem;border-radius:2px;font-size:0.7rem;letter-spacing:0.2em;color:#e08070;margin:0.3rem;}
+    .film-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 3rem; padding: 2rem 0; perspective: 1200px; }
+    .film-card { position: relative; background: rgba(20, 25, 30, 0.4); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; overflow: hidden; transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); display: flex; flex-direction: column; backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5); aspect-ratio: 2/3; }
+    .film-card:hover { transform: translateY(-12px) scale(1.02); box-shadow: 0 20px 40px -5px rgba(0,0,0,0.7), 0 0 25px rgba(192,57,43,0.4), inset 0 0 0 1px rgba(201,168,76,0.2); border-color: transparent; }
+    .film-cover { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease, filter 0.8s ease; filter: brightness(0.85) contrast(1.1); }
+    .film-card:hover .film-cover { transform: scale(1.08); filter: brightness(1.1) contrast(1.1); }
+    .film-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10, 8, 4, 0.95) 0%, rgba(10, 8, 4, 0.2) 50%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; opacity: 1; transition: opacity 0.4s ease; z-index: 1; }
+    .film-card:hover .film-overlay { background: linear-gradient(to top, rgba(192, 57, 43, 0.9) 0%, rgba(10, 8, 4, 0.4) 60%, transparent 100%); }
+    .film-title { font-family: 'Syne', sans-serif; font-size: 1.25rem; font-weight: 800; color: rgba(245,239,230,0.95); line-height: 1.3; text-shadow: 0 2px 4px rgba(0,0,0,0.8); transition: color 0.3s; margin-bottom: 0.5rem; text-transform: capitalize; }
+    .film-card:hover .film-title { color: var(--gold); }
+    .film-rating { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Klee One', cursive; font-size: 0.9rem; color: var(--gold); font-weight: bold; background: rgba(0,0,0,0.5); padding: 0.3rem 0.6rem; border-radius: 4px; backdrop-filter: blur(5px); border: 1px solid rgba(201,168,76,0.3); width: fit-content; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
+    .film-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent); transform: skewX(-25deg); transition: left 0.7s ease; z-index: 2; pointer-events: none; }
+    .film-card:hover::before { left: 200%; }
     footer{text-align:center;padding:3rem;color:var(--muted);font-size:0.75rem;letter-spacing:0.3em;}
   </style>
 </head>
@@ -37,15 +46,62 @@
     <h1>Film / Series</h1>
   </div>
   <div class="content">
-    <div class="placeholder-card">
-      <p>Halaman ini sedang dalam pengerjaan.<br>Di sini nantinya akan ada rekomendasi film dan series favorit Ivan — dari anime, thriller, sci-fi, hingga drama Korea.</p>
-      <br>
-      <div>
-        <span class="tag">Anime</span>
-        <span class="tag">Thriller</span>
-        <span class="tag">Sci-Fi</span>
-        <span class="tag">K-Drama</span>
-        <span class="tag">Action</span>
+    <div class="film-grid">
+      <div class="film-card">
+        <img src="film/18×2 Beyond Youthful Days_8,8.jpeg" alt="18×2 Beyond Youthful Days" class="film-cover">
+        <div class="film-overlay">
+          <div class="film-title">18×2 Beyond Youthful Days</div>
+          <div class="film-rating">★ 8,8/10</div>
+        </div>
+      </div>
+      <div class="film-card">
+        <img src="film/Lookback_10.jpg" alt="Lookback" class="film-cover">
+        <div class="film-overlay">
+          <div class="film-title">Lookback</div>
+          <div class="film-rating">★ 10/10</div>
+        </div>
+      </div>
+      <div class="film-card">
+        <img src="film/fury_10.jpg" alt="Fury" class="film-cover">
+        <div class="film-overlay">
+          <div class="film-title">Fury</div>
+          <div class="film-rating">★ 10/10</div>
+        </div>
+      </div>
+      <div class="film-card">
+        <img src="film/how to train your dragon_10.jpg" alt="How To Train Your Dragon" class="film-cover">
+        <div class="film-overlay">
+          <div class="film-title">How To Train Your Dragon</div>
+          <div class="film-rating">★ 10/10</div>
+        </div>
+      </div>
+      <div class="film-card">
+        <img src="film/la grande maison tokyo_9.jpg" alt="La Grande Maison Tokyo" class="film-cover">
+        <div class="film-overlay">
+          <div class="film-title">La Grande Maison Tokyo</div>
+          <div class="film-rating">★ 9/10</div>
+        </div>
+      </div>
+      <div class="film-card">
+        <img src="film/one piece fan letter_9.jpg" alt="One Piece Fan Letter" class="film-cover">
+        <div class="film-overlay">
+          <div class="film-title">One Piece Fan Letter</div>
+          <div class="film-rating">★ 9/10</div>
+        </div>
+      </div>
+      <div class="film-card">
+        <img src="film/soul_8,1.jpg" alt="Soul" class="film-cover">
+        <div class="film-overlay">
+          <div class="film-title">Soul</div>
+          <div class="film-rating">★ 8,1/10</div>
+        </div>
+      </div>
+      <div class="film-card">
+        <img src="film/trillion game_10.jpg" alt="Trillion Game" class="film-cover">
+        <div class="film-overlay">
+          <div class="film-title">Trillion Game</div>
+          <div class="film-rating">★ 10/10</div>
+        </div>
       </div>
     </div>
   </div>
