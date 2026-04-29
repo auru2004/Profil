@@ -21,6 +21,12 @@
     .placeholder-card{background:rgba(44,74,110,0.08);border:1px solid rgba(44,74,110,0.2);border-radius:2px;padding:3rem;text-align:center;}
     .placeholder-card p{font-family:'Klee One',cursive;color:rgba(245,239,230,0.6);line-height:1.8;}
     .tag{display:inline-block;background:rgba(44,74,110,0.2);border:1px solid rgba(44,74,110,0.4);padding:0.2rem 0.8rem;border-radius:2px;font-size:0.7rem;letter-spacing:0.2em;color:#7ba7d6;margin:0.3rem;}
+    .book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 2rem; }
+    .book-card { background: rgba(44,74,110,0.08); border: 1px solid rgba(44,74,110,0.2); border-radius: 4px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column;}
+    .book-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3), 0 0 15px rgba(44,74,110,0.4); }
+    .book-cover { width: 100%; height: 300px; object-fit: cover; border-bottom: 1px solid rgba(44,74,110,0.2); }
+    .book-info { padding: 1rem; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: center;}
+    .book-title { font-family: 'Klee One', cursive; font-size: 1.1rem; color: rgba(245,239,230,0.9); line-height: 1.4; }
     footer{text-align:center;padding:3rem;color:var(--muted);font-size:0.75rem;letter-spacing:0.3em;}
   </style>
 </head>
@@ -38,15 +44,60 @@
     <h1>Buku</h1>
   </div>
   <div class="content">
-    <div class="placeholder-card">
-      <p>Halaman ini sedang dalam pengerjaan.<br>Di sini nantinya akan ada koleksi buku favorit Ivan — dari fiksi ilmiah, pengembangan diri, hingga sastra dunia.</p>
-      <br>
-      <div>
-        <span class="tag">Fiksi</span>
-        <span class="tag">Sci-Fi</span>
-        <span class="tag">Pengembangan Diri</span>
-        <span class="tag">Sastra</span>
-        <span class="tag">Fantasi</span>
+    <div class="book-grid">
+      <div class="book-card">
+        <img src="coverbuku/A Christmas Carol.jpg" alt="A Christmas Carol" class="book-cover">
+        <div class="book-info">
+          <div class="book-title">A Christmas Carol</div>
+        </div>
+      </div>
+      <div class="book-card">
+        <img src="coverbuku/Animal Farm.jpg" alt="Animal Farm" class="book-cover">
+        <div class="book-info">
+          <div class="book-title">Animal Farm</div>
+        </div>
+      </div>
+      <div class="book-card">
+        <img src="coverbuku/Hujan.png" alt="Hujan" class="book-cover">
+        <div class="book-info">
+          <div class="book-title">Hujan</div>
+        </div>
+      </div>
+      <div class="book-card">
+        <img src="coverbuku/Penyihir Terakhir Puerro Series.jpg" alt="Penyihir Terakhir Puerro Series" class="book-cover">
+        <div class="book-info">
+          <div class="book-title">Penyihir Terakhir Puerro Series</div>
+        </div>
+      </div>
+      <div class="book-card">
+        <img src="coverbuku/Robinson Crusoe.jpg" alt="Robinson Crusoe" class="book-cover">
+        <div class="book-info">
+          <div class="book-title">Robinson Crusoe</div>
+        </div>
+      </div>
+      <div class="book-card">
+        <img src="coverbuku/Ther Melin Anthology.jfif" alt="Ther Melin Anthology" class="book-cover">
+        <div class="book-info">
+          <div class="book-title">Ther Melin Anthology</div>
+        </div>
+      </div>
+      <div class="book-card">
+        <img src="coverbuku/bulan.jpg" alt="Bulan" class="book-cover">
+        <div class="book-info">
+          <div class="book-title">Bulan</div>
+        </div>
+      </div>
+      <div class="book-card">
+        <img src="coverbuku/bumi.jpg" alt="Bumi" class="book-cover">
+        <div class="book-info">
+          <div class="book-title">Bumi</div>
+        </div>
+      </div>
+      <div class="book-card">
+        <img src="coverbuku/matahari.jpg" alt="Matahari" class="book-cover">
+        <div class="book-info">
+          <div class="book-title">Matahari</div>
+        </div>
       </div>
     </div>
   </div>
