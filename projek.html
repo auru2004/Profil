@@ -1,28 +1,236 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projek — Ivan CNR</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&family=Syne:wght@400;700;800&family=Klee+One&display=swap" rel="stylesheet"/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&family=Syne:wght@400;700;800&family=Klee+One&display=swap"
+    rel="stylesheet" />
   <style>
-    :root{--gold:#c9a84c;--muted:#7a6a52;--green:#2d7d4f;}
-    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-    body{background:#0a0804;color:#f5efe6;font-family:'Syne',sans-serif;min-height:100vh;}
-    nav{padding:1.5rem 2rem;display:flex;align-items:center;gap:1.5rem;border-bottom:1px solid rgba(201,168,76,0.1);}
-    nav a{color:var(--muted);text-decoration:none;font-size:0.8rem;letter-spacing:0.2em;transition:color 0.2s;}
-    nav a:hover{color:var(--gold);}
-    .page-hero{padding:5rem 2rem 3rem;text-align:center;}
-    .page-jp{font-family:'Noto Serif JP',serif;font-size:0.75rem;letter-spacing:0.5em;color:var(--muted);margin-bottom:0.5rem;}
-    .page-icon{font-size:4rem;margin-bottom:1rem;filter:drop-shadow(0 0 20px #2d7d4f);}
-    h1{font-size:clamp(2rem,6vw,4rem);font-weight:800;background:linear-gradient(135deg,#f5efe6,#4caf80,#f5efe6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-    .content{max-width:900px;margin:0 auto;padding:2rem;}
-    .placeholder-card{background:rgba(45,125,79,0.06);border:1px solid rgba(45,125,79,0.2);border-radius:2px;padding:3rem;text-align:center;}
-    .placeholder-card p{font-family:'Klee One',cursive;color:rgba(245,239,230,0.6);line-height:1.8;}
-    .tag{display:inline-block;background:rgba(45,125,79,0.15);border:1px solid rgba(45,125,79,0.3);padding:0.2rem 0.8rem;border-radius:2px;font-size:0.7rem;letter-spacing:0.2em;color:#6dba96;margin:0.3rem;}
-    footer{text-align:center;padding:3rem;color:var(--muted);font-size:0.75rem;letter-spacing:0.3em;}
+    :root {
+      --gold: #c9a84c;
+      --muted: #7a6a52;
+      --green: #2d7d4f;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0804;
+      color: #f5efe6;
+      font-family: 'Syne', sans-serif;
+      min-height: 100vh;
+    }
+
+    nav {
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+
+    .page-hero {
+      padding: 5rem 2rem 3rem;
+      text-align: center;
+    }
+
+    .page-jp {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.5em;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .page-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 20px #2d7d4f);
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #f5efe6, #4caf80, #f5efe6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(201, 168, 76, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(201, 168, 76, 0.08), rgba(45, 125, 79, 0.05));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(201, 168, 76, 0.4);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(45, 125, 79, 0.15);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
+    }
+
+    .project-gallery {
+      width: 100%;
+      height: 280px;
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(201, 168, 76, 0.5) rgba(255, 255, 255, 0.05);
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .project-gallery::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .project-gallery::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .project-gallery::-webkit-scrollbar-thumb {
+      background: rgba(201, 168, 76, 0.5);
+      border-radius: 10px;
+    }
+
+    .project-image-wrapper {
+      flex: 0 0 100%;
+      height: 100%;
+      scroll-snap-align: start;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.6s ease;
+    }
+
+    .project-card:hover .project-image-wrapper img {
+      transform: scale(1.03);
+    }
+
+    .project-info {
+      padding: 2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+      line-height: 1.3;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: rgba(245, 239, 230, 0.8);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: auto;
+    }
+
+    .tech-tag {
+      background: rgba(45, 125, 79, 0.12);
+      border: 1px solid rgba(45, 125, 79, 0.25);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: #6dba96;
+      transition: all 0.3s ease;
+    }
+
+    .project-card:hover .tech-tag {
+      background: rgba(45, 125, 79, 0.25);
+      border-color: rgba(45, 125, 79, 0.5);
+      color: #fff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem;
+      color: var(--muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+    }
   </style>
 </head>
+
 <body>
   <nav>
     <a href="index.html">←</a>
@@ -39,18 +247,81 @@
     <h1>Projek</h1>
   </div>
   <div class="content">
-    <div class="placeholder-card">
-      <p>Halaman ini sedang dalam pengerjaan.<br>Di sini nantinya akan ada showcase projek-projek Ivan — dari web development, desain, hingga eksperimen teknologi lainnya.</p>
-      <br>
-      <div>
-        <span class="tag">Web Dev</span>
-        <span class="tag">UI/UX</span>
-        <span class="tag">Teknologi</span>
-        <span class="tag">Kreatif</span>
-        <span class="tag">Open Source</span>
+    <div class="project-grid">
+
+      <!-- Project 1: Merita -->
+      <div class="project-card">
+        <div class="project-gallery">
+          <div class="project-image-wrapper"><img src="projek/Merita/1.png" alt="Merita 1"></div>
+          <div class="project-image-wrapper"><img src="projek/Merita/2.png" alt="Merita 2"></div>
+          <div class="project-image-wrapper"><img src="projek/Merita/3.png" alt="Merita 3"></div>
+          <div class="project-image-wrapper"><img src="projek/Merita/4.png" alt="Merita 4"></div>
+          <div class="project-image-wrapper"><img src="projek/Merita/5.png" alt="Merita 5"></div>
+        </div>
+        <div class="project-info">
+          <h2 class="project-title">Merita</h2>
+          <p class="project-desc">Aplikasi web untuk membaca novel dan cerpen dengan fitur audio narasi untuk tunanetra.
+            Dilengkapi dengan input cerita oleh pengguna, tombol suara, pengaturan sampul, dan daftar favorit.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">PHP</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+        </div>
       </div>
+
+      <!-- Project 2: Smart Boat Controller -->
+      <div class="project-card">
+        <div class="project-gallery">
+          <div class="project-image-wrapper"><img src="projek/Smart Boat Controller via Bluetooth/1.jpg"
+              alt="Smart Boat 1"></div>
+          <div class="project-image-wrapper"><img src="projek/Smart Boat Controller via Bluetooth/2.jpeg"
+              alt="Smart Boat 2"></div>
+          <div class="project-image-wrapper"><img src="projek/Smart Boat Controller via Bluetooth/3.jpeg"
+              alt="Smart Boat 3"></div>
+          <div class="project-image-wrapper"><img src="projek/Smart Boat Controller via Bluetooth/4.jpeg"
+              alt="Smart Boat 4"></div>
+        </div>
+        <div class="project-info">
+          <h2 class="project-title">Smart Boat Controller</h2>
+          <p class="project-desc">Proyek kapal pengangkut sampah sebagai solusi pembersihan area perairan secara praktis
+            dan efisien. Sistem ini menggunakan modul Bluetooth HC-05 untuk mengendalikan kapal dari smartphone secara
+            jarak jauh. Proyek ini menunjukkan penerapan teknologi mikrokontroler dan otomasi sederhana dalam mendukung
+            kebersihan lingkungan berbasis inovasi.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">Arduino Uno</span>
+            <span class="tech-tag">HC-05</span>
+            <span class="tech-tag">L298N</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3: Keybab -->
+      <div class="project-card">
+        <div class="project-gallery">
+          <div class="project-image-wrapper"><img src="projek/Keybab/1.png" alt="Keybab 1"></div>
+          <div class="project-image-wrapper"><img src="projek/Keybab/2.png" alt="Keybab 2"></div>
+          <div class="project-image-wrapper"><img src="projek/Keybab/3.png" alt="Keybab 3"></div>
+          <div class="project-image-wrapper"><img src="projek/Keybab/4.png" alt="Keybab 4"></div>
+          <div class="project-image-wrapper"><img src="projek/Keybab/5.png" alt="Keybab 5"></div>
+        </div>
+        <div class="project-info">
+          <h2 class="project-title">Keybab</h2>
+          <p class="project-desc">Aplikasi pembelajaran dengan sistem XP, skill, gold, dan tugas. Fitur tambah skill +
+            level kesulitan, tugas harian dan deadline, list reward.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">Flutter</span>
+            <span class="tech-tag">Dart</span>
+            <span class="tech-tag">PHP</span>
+            <span class="tech-tag">MySQL</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
   <footer>作品 · Ide yang Jadi Kenyataan</footer>
 </body>
+
 </html>
