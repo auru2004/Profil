@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Penulisan — Ivan CNR</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&family=Syne:wght@400;700;800&family=Klee+One&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--ink:#1a1209;--paper:#f5efe6;--red:#c0392b;--gold:#c9a84c;--muted:#7a6a52;--accent:#d35400;}
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    body{background:#0a0804;color:#f5efe6;font-family:'Syne',sans-serif;min-height:100vh;}
+    nav{padding:1.5rem 2rem;display:flex;align-items:center;gap:1.5rem;border-bottom:1px solid rgba(201,168,76,0.1); flex-wrap: wrap;}
+    nav a{color:var(--muted);text-decoration:none;font-size:0.8rem;letter-spacing:0.2em;transition:color 0.2s;}
+    nav a:hover{color:var(--gold);}
+    nav .back{font-size:1.2rem;}
+    .page-hero{padding:5rem 2rem 3rem;text-align:center;position:relative;}
+    .page-icon{font-size:4rem;margin-bottom:1rem;filter:drop-shadow(0 0 20px var(--accent));}
+    .page-jp{font-family:'Noto Serif JP',serif;font-size:0.75rem;letter-spacing:0.5em;color:var(--muted);margin-bottom:0.5rem;}
+    h1{font-size:clamp(2rem,6vw,4rem);font-weight:800;background:linear-gradient(135deg,#f5efe6,var(--accent),#f5efe6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    
+    .content{max-width:900px;margin:0 auto;padding:2rem;}
+    
+    .article-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+    
+    .article-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(201, 168, 76, 0.1);
+      border-left: 4px solid var(--accent);
+      border-radius: 4px;
+      padding: 3rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    
+    .article-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, rgba(211, 84, 0, 0.05), transparent);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: 0;
+    }
+    
+    .article-card:hover {
+      transform: translateX(15px);
+      border-color: rgba(201, 168, 76, 0.3);
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    }
+    
+    .article-card:hover::before {
+      opacity: 1;
+    }
+    
+    .article-meta {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.85rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .article-meta::before {
+      content: '✦';
+      font-size: 0.7rem;
+      opacity: 0.7;
+    }
+    
+    .article-title {
+      font-family: 'Klee One', cursive;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      font-weight: bold;
+      color: rgba(245, 239, 230, 0.95);
+      line-height: 1.5;
+      position: relative;
+      z-index: 1;
+      transition: color 0.3s ease;
+    }
+    
+    .article-card:hover .article-title {
+      color: var(--gold);
+    }
+    
+    .article-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(201, 168, 76, 0.1);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .article-domain {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .article-link-text {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.4s ease;
+    }
+
+    .article-card:hover .article-link-text {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    footer{text-align:center;padding:3rem;color:var(--muted);font-size:0.75rem;letter-spacing:0.3em;}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="back">←</a>
+    <a href="index.html">Home</a>
+    <a href="buku.html">Buku</a>
+    <a href="musik.html">Musik</a>
+    <a href="film.html">Film</a>
+    <a href="anime.html">Anime</a>
+    <a href="game.html">Game</a>
+    <a href="projek.html">Projek</a>
+  </nav>
+  
+  <div class="page-hero">
+    <div class="page-jp">執筆 · WRITING</div>
+    <div class="page-icon">✍️</div>
+    <h1>Penulisan</h1>
+  </div>
+  
+  <div class="content">
+    <div class="article-list">
+      
+      <a href="https://kalimantanpost.com/2026/04/aset-atau-komoditas-di-era-kebocoran-yang-dainggap-biasa/" target="_blank" class="article-card">
+        <div class="article-meta">Opini & Analisis</div>
+        <div class="article-title">Aset atau Komoditas di Era Kebocoran yang Dianggap Biasa</div>
+        <div class="article-footer">
+          <div class="article-domain">Kalimantan Post</div>
+          <div class="article-link-text">BACA ARTIKEL →</div>
+        </div>
+      </a>
+      
+      <a href="https://kalimantanpost.com/2026/04/pentingnya-computer-vision-dalam-mewujudkan-ikn-sebagai-kota-pintar/" target="_blank" class="article-card">
+        <div class="article-meta">Teknologi & Masa Depan</div>
+        <div class="article-title">Pentingnya Computer Vision dalam Mewujudkan IKN sebagai Kota Pintar</div>
+        <div class="article-footer">
+          <div class="article-domain">Kalimantan Post</div>
+          <div class="article-link-text">BACA ARTIKEL →</div>
+        </div>
+      </a>
+      
+      <a href="https://ojs.serambimekkah.ac.id/jnkti/article/view/8882" target="_blank" class="article-card">
+        <div class="article-meta">Jurnal Ilmiah</div>
+        <div class="article-title">Publikasi pada Jurnal Nasional Komputasi dan Teknologi Informasi (JNKTI)</div>
+        <div class="article-footer">
+          <div class="article-domain">OJS Serambi Mekkah</div>
+          <div class="article-link-text">BACA JURNAL →</div>
+        </div>
+      </a>
+      
+    </div>
+  </div>
+  
+  <footer>執筆 · Kata Adalah Jendela Pemikiran</footer>
+</body>
+</html>
